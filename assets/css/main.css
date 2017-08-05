@@ -1,0 +1,44 @@
+/*== MAIN STYLE ==*/
+h1, h2, h3, h4, h5, h6, p{
+  font-family: GothamBoldRegular;
+}
+#main-wrap{
+  width: 90%;
+  margin: 5%;
+  padding: 0;
+  position: relative;
+}
+
+/*== USERS ==*/
+#user-wrap{
+  width: 25%;
+  margin: 0 2.5% 0 0;
+  padding: 1.25%;
+  float: left;
+}
+
+/*== POSITIONS MAP ==*/
+#pos-wrap{
+  width: 65%;
+  margin: 0 0 0 2.5%;
+  padding: 1.25%;
+  float: right;
+}
+#pos-wrap table{
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  border: 1px solid #000;
+  table-layout: fixed;
+}
+#pos-wrap tr, th, td{
+  border-collapse: collapse;
+  border: 1px solid #000;
+  padding: 2.5% 0;
+}
+#pos-wrap td{
+  background-color: #a0ff75;
+}
+.pos-med{
+  opacity: 0;
+}
