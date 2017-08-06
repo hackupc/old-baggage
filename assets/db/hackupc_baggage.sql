@@ -10,7 +10,7 @@ CREATE TABLE hupc_positions (
   name varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   surname varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   created timestamp DEFAULT CURRENT_TIMESTAMP,
-  deleted timestamp DEFAULT NULL,
+  deleted timestamp NULL DEFAULT NULL,
   description varchar(250) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (row, col, created),
   UNIQUE (row, col, deleted)
