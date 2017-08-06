@@ -29,7 +29,7 @@ function getBaggages(){
     die("Connection failed: ".$conn->connect_error);
   }
   $query = "
-    SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.description
+    SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description
     FROM hupc_positions pos
     WHERE pos.deleted IS NULL;";
   $users = array();
@@ -42,7 +42,7 @@ function getBaggages(){
   $conn->close();
   return $users;
 }
-/*function getUserInfo($usr_id){
+function getHistory(){
   global $db_server;
   global $db_user;
   global $db_pass;
@@ -53,13 +53,38 @@ function getBaggages(){
     die("Connection failed: ".$conn->connect_error);
   }
   $query = "
-    SELECT usr.name, usr.surname
-    FROM hupc_users usr
-    WHERE usr.id = '".$usr_id."';";
+    SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description, pos.deleted
+    FROM hupc_positions pos
+    WHERE pos.deleted IS NOT NULL
+    ORDER BY pos.deleted DESC;";
+  $users = array();
+  if($users2 = $conn->query($query)){
+    while($row = $users2->fetch_assoc()){
+      $users[] = $row;
+    }
+    $users2->free();
+  }
+  $conn->close();
+  return $users;
+}
+function getInfo($pos_row, $pos_col){
+  global $db_server;
+  global $db_user;
+  global $db_pass;
+  global $db_name;
+  $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+  $conn->set_charset("utf8");
+  if($conn->connect_error){
+    die("Connection failed: ".$conn->connect_error);
+  }
+  $query = "
+    SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description
+    FROM hupc_positions pos
+    WHERE (pos.row = '".$pos_row."') AND (pos.col = '".$pos_col."') AND (pos.deleted IS NULL);";
   $result = mysqli_query($conn, $query);
   $result = mysqli_fetch_array($result);
   return $result;
-}*/
+}
 
 /*== POSITIONS ==*/
 function getOcupation($pos_row, $pos_col){

@@ -11,9 +11,17 @@
     <div id="user-wrap">
       <div class="user-tab">
         <button class="user-tabs" onclick="openTab(event, 'user-checkin')">Check-in</button>
-        <button class="user-tabs" onclick="openTab(event, 'user-list')">Baggage list</button>
+        <button class="user-tabs" onclick="openTab(event, 'user-list')">List</button>
+        <button class="user-tabs" onclick="openTab(event, 'user-history')">History</button>
+        <?php
+          if(isset($_GET['rem_row'])&&isset($_GET['rem_col'])){
+            ?>
+              <button class="user-tabs" onclick="openTab(event, 'user-details')">Details</button>
+            <?php
+          }
+        ?>
       </div>
-      <div id="user-checkin" class="user-content" style="display: block;">
+      <div id="user-checkin" class="user-content" <?php if(!(isset($_GET['rem_row'])&&isset($_GET['rem_col']))){ echo 'style="display: block;"'; } ?>>
         <form method="post" id="reg_form" action="" onsubmit="return verifyForm();">
           <div>
             <h2>Baggage check-in</h2>
@@ -36,10 +44,47 @@
           foreach($users as $user){
             echo $user["id"].' ';
             echo $user["name"].' ';
-            echo $user["surname"].'</br>';
+            echo $user["surname"].' ';
+            echo $user["created"].'</br>';
           }
         ?>
       </div>
+      <div id="user-history" class="user-content">
+        <div>
+          <h2>Baggage history</h2>
+        </div>
+        <?php
+          $users = getHistory();
+          foreach($users as $user){
+            echo $user["id"].' ';
+            echo $user["name"].' ';
+            echo $user["surname"].' ';
+            echo $user["deleted"].'</br>';
+          }
+        ?>
+      </div>
+      <?php
+        if(isset($_GET['rem_row'])&&isset($_GET['rem_col'])){
+          ?>
+            <div id="user-details" class="user-content" style="display: block;">
+              <div>
+                <h2>User details</h2>
+              </div>
+              <?php
+                $details_row = chr($_GET['rem_row']+65);
+                $details_col = ord($_GET['rem_col'])-48;
+                $details = getInfo($details_row, $details_col);
+                echo $details["id"].' ';
+                echo $details["name"].' ';
+                echo $details["surname"].'</br>';
+                ?>
+                  <a href="<?php echo 'assets/functions/remove_old.php?rem_row='.$_GET['rem_row'].'&rem_col='.$_GET['rem_col']; ?>">Remove baggage</a>
+                <?php
+              ?>
+            </div>
+          <?php
+        }
+      ?>
     </div>
     <div id="pos-wrap">
     <?php
@@ -62,7 +107,7 @@
                 }
                 else if(getOcupation(numToChar($ini_row), $ini_col)!=NULL){
                   ?><td id="<?php echo 'hupc-pos_'.$ini_row.'-'.$ini_col; ?>" style="background-color: #db4646;"><?php
-                    ?><a href="<?php echo 'assets/functions/remove_old.php?rem_row='.$ini_row.'&rem_col='.$ini_col; ?>"><?php echo numToChar($ini_row).$ini_col; ?></a><?php
+                    ?><a href="<?php echo '?rem_row='.$ini_row.'&rem_col='.$ini_col; ?>"><?php echo numToChar($ini_row).$ini_col; ?></a><?php
                   ?></td><?php
                   $ini_col++;
                 }
