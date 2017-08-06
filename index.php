@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <?php include "assets/functions/functions.php" ?>
   <script src="assets/js/form.js" type="text/javascript"></script>
+  <script src="assets/js/tabs.js" type="text/javascript"></script>
   <script src="https://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
   <link href="https://fonts.googleapis.com/css?family=Ek+Mukta" rel="stylesheet">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -242,21 +243,3 @@
   </div>
 </body>
 </html>
-<script>
-  function openTab(evt, tabName){
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("user-content");
-    for(i=0; i<tabcontent.length; i++){
-      tabcontent[i].style.opacity = "0";
-      tabcontent[i].style.height = "0";
-    }
-    tablinks = document.getElementsByClassName("user-tabs");
-    for(i=0; i<tablinks.length; i++){
-      tablinks[i].classList.remove("active");
-    }
-    document.getElementById(tabName).style.opacity = "1";
-    document.getElementById(tabName).style.height = "inherit";
-    evt.currentTarget.classList.add("active");
-    window.history.pushState("object or string", "Title", location.protocol+"//"+location.host+location.pathname);
-  }
-</script>
