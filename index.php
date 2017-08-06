@@ -13,24 +13,31 @@
         <button class="user-tabs" onclick="openTab(event, 'user-checkin')">Check-in</button>
         <button class="user-tabs" onclick="openTab(event, 'user-list')">List</button>
         <button class="user-tabs" onclick="openTab(event, 'user-history')">History</button>
-        <?php
+        <button class="user-tabs" onclick="openTab(event, 'user-search')">Search</button>
+        <!--<?php
           if(isset($_GET['rem_row'])&&isset($_GET['rem_col'])){
             ?>
               <button class="user-tabs" onclick="openTab(event, 'user-details')">Details</button>
             <?php
           }
-        ?>
+          if(isset($_GET['rem_id'])){
+            ?>
+              <button class="user-tabs" onclick="openTab(event, 'user-details')">User</button>
+            <?php
+          }
+        ?>-->
       </div>
-      <div id="user-checkin" class="user-content" <?php if(!(isset($_GET['rem_row'])&&isset($_GET['rem_col']))){ echo 'style="display: block;"'; } ?>>
+      <div id="user-checkin" class="user-content" <?php if(!((isset($_GET['rem_row'])&&isset($_GET['rem_col']))||isset($_GET['rem_id']))){ echo 'style="display: block;"'; } ?>>
         <form method="post" id="reg_form" action="" onsubmit="return verifyForm();">
           <div>
             <h2>Baggage check-in</h2>
           </div>
           <div>
-            <input type="text" id="reg_id" name="reg_id" placeholder="DNI/Passport">
+            <input type="text" id="reg_id" name="reg_id" placeholder="ID/Passport">
             <input type="text" id="reg_name" name="reg_name" placeholder="Name">
             <input type="text" id="reg_surname" name="reg_surname" placeholder="Surname">
             <input type="text" id="reg_desc" name="reg_desc" placeholder="Description">
+            <input type="checkbox" id="reg_spe" name="reg_spe" value="Special">Special<br>
             <input type="submit" id="reg_submit" name="reg_submit" value="Submit">
           </div>
         </form>
@@ -42,8 +49,8 @@
         <?php
           $users = getBaggages();
           foreach($users as $user){
-            echo $user["id"].' ';
-            echo $user["name"].' ';
+            ?><a href="<?php echo '?rem_id='.$user["id"]; ?>"><?php echo $user["id"]; ?></a><?php
+            echo ' '.$user["name"].' ';
             echo $user["surname"].' ';
             echo $user["created"].'</br>';
           }
@@ -56,31 +63,72 @@
         <?php
           $users = getHistory();
           foreach($users as $user){
-            echo $user["id"].' ';
-            echo $user["name"].' ';
+            ?><a href="<?php echo '?rem_id='.$user["id"]; ?>"><?php echo $user["id"]; ?></a><?php
+            echo ' '.$user["name"].' ';
             echo $user["surname"].' ';
             echo $user["deleted"].'</br>';
           }
         ?>
       </div>
+      <div id="user-search" class="user-content">
+        <form method="post" id="sea_form" action="" onsubmit="return verifySearch();">
+          <div>
+            <h2>User search</h2>
+          </div>
+          <div>
+            <input type="text" id="sea_id" name="sea_id" placeholder="DNI/Passport">
+            <input type="submit" id="sea_submit" name="sea_submit" value="Submit">
+          </div>
+        </form>
+      </div>
       <?php
         if(isset($_GET['rem_row'])&&isset($_GET['rem_col'])){
           ?>
-            <div id="user-details" class="user-content" style="display: block;">
+            <div id="user-user" class="user-content" style="display: block;">
               <div>
-                <h2>User details</h2>
+                <h2>Baggage details</h2>
               </div>
               <?php
                 $details_row = chr($_GET['rem_row']+65);
                 $details_col = ord($_GET['rem_col'])-48;
                 $details = getInfo($details_row, $details_col);
-                echo $details["id"].' ';
-                echo $details["name"].' ';
+                echo $details_row.$details_col.'</br>';
+                ?><a href="<?php echo '?rem_id='.$details["id"]; ?>"><?php echo $details["id"]; ?></a><?php
+                echo ' '.$details["name"].' ';
                 echo $details["surname"].'</br>';
                 ?>
                   <a href="<?php echo 'assets/functions/remove_old.php?rem_row='.$_GET['rem_row'].'&rem_col='.$_GET['rem_col']; ?>">Remove baggage</a>
                 <?php
               ?>
+              </br>
+              </br>
+              <a href="./"><< Go back</a>
+            </div>
+          <?php
+        }
+        if(isset($_GET['rem_id'])){
+          ?>
+            <div id="user-details" class="user-content" style="display: block;">
+              <div>
+                <h2>User history</h2>
+              </div>
+              <?php
+                $details_id = $_GET['rem_id'];
+                $details = getUserBaggages($details_id);
+                if(sizeof($details)>0){
+                  echo $details[0]["id"].' ';
+                  echo $details[0]["name"].' ';
+                  echo $details[0]["surname"].'</br></br>';
+                  foreach($details as $detail){
+                    ?><a href="<?php echo '?rem_row='.$detail["row"].'&rem_col='.$detail["col"]; ?>"><?php echo $detail["row"].$detail["col"]; ?></a><?php
+                    echo ' '.$detail["created"].'</br></br>';
+                  }
+                }
+                else{
+                  echo "There's no baggage with the ID/Passport provided.";
+                }
+              ?>
+            <a href="./"><< Go back</a>
             </div>
           <?php
         }

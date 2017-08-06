@@ -31,7 +31,33 @@ function getBaggages(){
   $query = "
     SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description
     FROM hupc_positions pos
-    WHERE pos.deleted IS NULL;";
+    WHERE pos.deleted IS NULL
+    ORDER BY pos.row, pos.col;";
+  $users = array();
+  if($users2 = $conn->query($query)){
+    while($row = $users2->fetch_assoc()){
+      $users[] = $row;
+    }
+    $users2->free();
+  }
+  $conn->close();
+  return $users;
+}
+function getUserBaggages($pos_id){
+  global $db_server;
+  global $db_user;
+  global $db_pass;
+  global $db_name;
+  $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+  $conn->set_charset("utf8");
+  if($conn->connect_error){
+    die("Connection failed: ".$conn->connect_error);
+  }
+  $query = "
+    SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description
+    FROM hupc_positions pos
+    WHERE pos.id = '".$pos_id."'
+    ORDER BY pos.deleted DESC;";
   $users = array();
   if($users2 = $conn->query($query)){
     while($row = $users2->fetch_assoc()){
