@@ -17,27 +17,15 @@
   <div id="main-wrap">
     <div id="user-wrap">
       <div class="user-tab">
-        <button class="user-tabs active" onclick="openTab(event, 'user-checkin')">Check-in</button>
+        <button class="user-tabs<?php if(!((isset($_GET['rem_row'])&&isset($_GET['rem_col']))||isset($_GET['rem_id']))){ echo ' active'; } ?>" onclick="openTab(event, 'user-checkin')">Check-in</button>
         <button class="user-tabs" onclick="openTab(event, 'user-list')">List</button>
         <button class="user-tabs" onclick="openTab(event, 'user-history')">History</button>
         <button class="tabs-last user-tabs" onclick="openTab(event, 'user-search')">Search</button>
-        <!--<?php
-          if(isset($_GET['rem_row'])&&isset($_GET['rem_col'])){
-            ?>
-              <button class="user-tabs" onclick="openTab(event, 'user-details')">Details</button>
-            <?php
-          }
-          if(isset($_GET['rem_id'])){
-            ?>
-              <button class="user-tabs" onclick="openTab(event, 'user-details')">User</button>
-            <?php
-          }
-        ?>-->
       </div>
       <div id="user-checkin" class="user-content" <?php if(!((isset($_GET['rem_row'])&&isset($_GET['rem_col']))||isset($_GET['rem_id']))){ echo 'style="opacity: 1; height: inherit;"'; } ?>>
         <form method="post" id="reg_form" action="" onsubmit="return verifyForm();">
           <div>
-            <h2>Baggage check-in</h2>
+            <h2 class="user-title">Baggage check-in</h2>
           </div>
           <div>
             <input type="text" id="reg_id" name="reg_id" placeholder="ID/Passport">
@@ -51,7 +39,7 @@
       </div>
       <div id="user-list" class="user-content">
         <div>
-          <h2>Baggage list</h2>
+          <h2 class="user-title">Baggage list</h2>
         </div>
         <?php
           $users = getBaggages();
@@ -67,7 +55,7 @@
       </div>
       <div id="user-history" class="user-content">
         <div>
-          <h2>Baggage history</h2>
+          <h2 class="user-title">Baggage history</h2>
         </div>
         <?php
           $users = getHistory();
@@ -84,7 +72,7 @@
       <div id="user-search" class="user-content">
         <form method="post" id="sea_form" action="" onsubmit="return verifySearch();">
           <div>
-            <h2>User search</h2>
+            <h2 class="user-title">User search</h2>
           </div>
           <div>
             <input type="text" id="sea_id" name="sea_id" placeholder="DNI/Passport">
@@ -95,9 +83,9 @@
       <?php
         if(isset($_GET['rem_row'])&&isset($_GET['rem_col'])){
           ?>
-            <div id="user-user" class="user-content" style="display: block;">
+            <div id="user-user" class="user-content" style="opacity: 1; height: inherit;">
               <div>
-                <h2>Baggage details</h2>
+                <h2 class="user-title">Baggage details</h2>
               </div>
               <?php
                 $details_row = $_GET['rem_row'];
@@ -126,9 +114,9 @@
         }
         if(isset($_GET['rem_id'])){
           ?>
-            <div id="user-details" class="user-content" style="display: block;">
+            <div id="user-details" class="user-content" style="opacity: 1; height: inherit;">
               <div>
-                <h2>User history</h2>
+                <h2 class="user-title">User history</h2>
               </div>
               <?php
                 $details_id = $_GET['rem_id'];
@@ -171,8 +159,8 @@
                   $corridor = true;
                 }
                 else if(getOcupation(numToChar($ini_row), $ini_col)!=NULL){
-                  ?><td id="<?php echo 'hupc-pos_'.$ini_row.'-'.$ini_col; ?>" style="background-color: #db4646;"><?php
-                    ?><a href="<?php echo '?rem_row='.numToChar($ini_row).'&rem_col='.$ini_col; ?>"><?php echo numToChar($ini_row).$ini_col; ?></a><?php
+                  ?><td id="<?php echo 'hupc-pos_'.$ini_row.'-'.$ini_col; ?>" style="background-color: #E71754;"><?php
+                    ?><a class="occupied" href="<?php echo '?rem_row='.numToChar($ini_row).'&rem_col='.$ini_col; ?>"><?php echo numToChar($ini_row).$ini_col; ?></a><?php
                   ?></td><?php
                   $ini_col++;
                 }
@@ -194,11 +182,16 @@
         if(sizeof($details)){
           ?>
             <div>
-              <h4>Special baggages</h4>
+              <h3 class="special-title">Special baggages</h3>
               <?php
+                $first = true;
                 foreach($details as $detail){
+                  if(!$first){
+                    echo ', ';
+                  }
                   ?><a href="<?php echo '?rem_row='.$detail["row"].'&rem_col='.$detail["col"]; ?>"><?php echo $detail["row"].$detail["col"]; ?></a><?php
-                  echo ' '.$detail["created"].'</br>';
+                  echo ': '.$detail["id"];
+                  $first = false;
                 }
               ?>
             </div>
