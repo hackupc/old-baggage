@@ -12,7 +12,9 @@
     }
     $query = "
       SELECT pos.row, pos.col
-      FROM hupc_positions pos;";
+      FROM hupc_positions pos
+      WHERE pos.deleted IS NULL
+      ORDER BY pos.row, pos.col;";
     $places = array();
     if($places2 = $conn->query($query)){
       while($row = $places2->fetch_assoc()){
@@ -71,7 +73,7 @@
     }
     $query = "
     INSERT INTO hupc_positions
-    VALUES('".$reg_row."', '".$reg_col."', '".$reg_id."', '".$reg_name."', '".$reg_surname."', CURRENT_TIMESTAMP, '".$reg_desc."');";
+    VALUES('".$reg_row."', '".$reg_col."', '".$reg_id."', '".$reg_name."', '".$reg_surname."', CURRENT_TIMESTAMP, NULL, '".$reg_desc."');";
     $result = mysqli_query($conn, $query);
     header('Location: ../../');
 ?>

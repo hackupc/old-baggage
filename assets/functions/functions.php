@@ -30,7 +30,8 @@ function getBaggages(){
   }
   $query = "
     SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.description
-    FROM hupc_positions pos;";
+    FROM hupc_positions pos
+    WHERE pos.deleted IS NULL;";
   $users = array();
   if($users2 = $conn->query($query)){
     while($row = $users2->fetch_assoc()){
@@ -74,7 +75,7 @@ function getOcupation($pos_row, $pos_col){
   $query = "
     SELECT pos.row, pos.col, pos.id
     FROM hupc_positions pos
-    WHERE (pos.row = '".$pos_row."') AND (pos.col = '".$pos_col."');";
+    WHERE (pos.row = '".$pos_row."') AND (pos.col = '".$pos_col."') AND (pos.deleted IS NULL);";
   $result = mysqli_query($conn, $query);
   $result = mysqli_fetch_array($result);
   return $result;
@@ -92,7 +93,7 @@ function getPlace(){
   $query = "
     SELECT pos.row, pos.col
     FROM hupc_positions pos
-    WHERE (pos.row = '".$pos_row."') AND (pos.col = '".$pos_col."');";
+    WHERE (pos.row = '".$pos_row."') AND (pos.col = '".$pos_col."') AND (pos.deleted IS NULL);";
   $places = array();
   if($places2 = $conn->query($query)){
     while($row = $places2->fetch_assoc()){

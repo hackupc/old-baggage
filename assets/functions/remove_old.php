@@ -14,23 +14,9 @@
       die("Connection failed: ".$conn->connect_error);
     }
     $query = "
-      SELECT pos.id, pos.name, pos.surname, pos.created, pos.description
-      FROM hupc_positions pos
-      WHERE (pos.row = '".$rem_row."') AND (pos.col = '".$rem_col."');";
-    $result = mysqli_query($conn, $query);
-    $result = mysqli_fetch_array($result);
-    $rem_id = $result['id'];
-    $rem_name = $result["name"];
-    $rem_surname = $result["surname"];
-    $rem_created = $result["created"];
-    $rem_desc = $result["description"];
-    $query = "
-      DELETE FROM hupc_positions
-      WHERE (row = '".$rem_row."') AND (col = '".$rem_col."');";
-    $result = mysqli_query($conn, $query);
-    $query = "
-      INSERT INTO hupc_oldpositions
-      VALUES('".$rem_row."', '".$rem_col."', '".$rem_id."', '".$rem_name."', '".$rem_surname."', '".$rem_created."', CURRENT_TIMESTAMP, '".$rem_desc."');";
+      UPDATE hupc_positions
+      SET deleted = CURRENT_TIMESTAMP
+      WHERE (row = '".$rem_row."') AND (col = '".$rem_col."') AND (deleted IS NULL);";
     $result = mysqli_query($conn, $query);
     header('Location: ../../');
 ?>
