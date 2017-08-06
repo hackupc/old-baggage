@@ -43,13 +43,27 @@
         </div>
         <?php
           $users = getBaggages();
+          $first = true;
           foreach($users as $user){
-            ?><a href="<?php echo '?rem_row='.$user["row"].'&rem_col='.$user["col"]; ?>"><?php echo $user["row"].$user["col"]; ?></a><?php
-            echo ' ';
-            ?><a href="<?php echo '?rem_id='.$user["id"]; ?>"><?php echo $user["id"]; ?></a><?php
-            echo ' '.$user["name"].' ';
-            echo $user["surname"].' ';
-            echo $user["created"].'</br>';
+            ?>
+              <div class="list" <?php if($first){ echo 'style="padding-top: 0; border-top: 0;"'; } ?>>
+                <div class="list-left">
+                  <a href="<?php echo '?rem_row='.$user["row"].'&rem_col='.$user["col"]; ?>"><?php echo $user["row"].$user["col"]; ?></a>
+                <?php
+                  echo '<p>'.date("j/Y g:i\h", strtotime($user["created"])).'</p>';
+                ?>
+                </div>
+              <?php
+              ?>
+                <div class="list-right">
+                  <a href="<?php echo '?rem_id='.$user["id"]; ?>"><?php echo $user["id"]; ?></a>
+                  <?php
+                    echo '<p>'.$user["name"].' '.$user["surname"].'</p>';
+                  ?>
+                </div>
+              </div>
+            <?php
+            $first = false;
           }
         ?>
       </div>
@@ -59,13 +73,25 @@
         </div>
         <?php
           $users = getHistory();
+          $first = true;
           foreach($users as $user){
-            ?><a href="<?php echo '?rem_row='.$user["row"].'&rem_col='.$user["col"].'&rem_time='.$user["created"]; ?>"><?php echo $user["row"].$user["col"]; ?></a><?php
-            echo ' ';
-            ?><a href="<?php echo '?rem_id='.$user["id"]; ?>"><?php echo $user["id"]; ?></a><?php
-            echo ' '.$user["name"].' ';
-            echo $user["surname"].' ';
-            echo $user["deleted"].'</br>';
+            ?>
+              <div class="list" <?php if($first){ echo 'style="padding-top: 0; border-top: 0;"'; } ?>>
+                <div class="list-left">
+                  <a href="<?php echo '?rem_row='.$user["row"].'&rem_col='.$user["col"].'&rem_time='.$user["created"]; ?>"><?php echo $user["row"].$user["col"]; ?></a>
+                  <?php
+                    echo '<p>'.date("j g:i\h", strtotime($user["created"])).' - '.date("j g:i\h", strtotime($user["deleted"])).'</p>';
+                  ?>
+                </div>
+                <div class="list-right">
+                  <a href="<?php echo '?rem_id='.$user["id"]; ?>"><?php echo $user["id"]; ?></a>
+                  <?php
+                    echo '<p>'.$user["name"].' '.$user["surname"].'</p>';
+                  ?>
+                </div>
+              </div>
+            <?php
+            $first = false;
           }
         ?>
       </div>
@@ -96,17 +122,17 @@
                 else{
                   $details = getInfo($details_row, $details_col, NULL);
                 }
-                echo $details_row.$details_col.'</br>';
-                ?><a href="<?php echo '?rem_id='.$details["id"]; ?>"><?php echo $details["id"]; ?></a><?php
-                echo ' '.$details["name"].' ';
-                echo $details["surname"].'</br>';
-                echo $details["created"].'</br>';
+                echo '<h3>'.$details_row.$details_col.'</h3>';
+                ?><p><a href="<?php echo '?rem_id='.$details["id"]; ?>"><?php echo $details["id"]; ?></a><?php
+                echo ': '.$details["name"].' '.$details["surname"].'</p>';
+                echo '<p>'.$details["description"].'</p>';
+                echo '<p>'.date("j/Y g:i\h", strtotime($details["created"]));
                 if(isset($_GET['rem_time'])){
-                  echo $details["deleted"];
+                  echo ' - '.date("j/Y g:i\h", strtotime($details["deleted"]));
                 }
-                echo '</br>';
+                echo '</p>';
                 ?>
-                  <a href="<?php echo 'assets/functions/remove_old.php?rem_row='.$_GET['rem_row'].'&rem_col='.$_GET['rem_col']; ?>">Remove baggage</a>
+                  <a id="remove-button" href="<?php echo 'assets/functions/remove_old.php?rem_row='.$_GET['rem_row'].'&rem_col='.$_GET['rem_col']; ?>">Remove baggage</a>
                 <?php
               ?>
             </div>
@@ -122,12 +148,25 @@
                 $details_id = $_GET['rem_id'];
                 $details = getUserBaggages($details_id);
                 if(sizeof($details)>0){
-                  echo $details[0]["id"].' ';
-                  echo $details[0]["name"].' ';
-                  echo $details[0]["surname"].'</br></br>';
+                  echo '<h3 class="user-title">'.$details[0]["id"].': '.$details[0]["name"].' '.$details[0]["surname"].'</h3>';
+                  $first = true;
                   foreach($details as $detail){
-                    ?><a href="<?php echo '?rem_row='.$detail["row"].'&rem_col='.$detail["col"].'&rem_time='.$detail["created"]; ?>"><?php echo $detail["row"].$detail["col"]; ?></a><?php
-                    echo ' '.$detail["created"].'</br></br>';
+                    ?>
+                    <div class="list" <?php if($first){ echo 'style="padding-top: 0; border-top: 0;"'; } ?>>
+                      <div class="list-left">
+                        <a href="<?php echo '?rem_row='.$detail["row"].'&rem_col='.$detail["col"].'&rem_time='.$detail["created"]; ?>"><?php echo $detail["row"].$detail["col"]; ?></a>
+                      </div>
+                      <div class="list-right">
+                        <?php
+                          echo '<p>'.date("j g:i\h", strtotime($detail["created"])).' - '.date("j g:i\h", strtotime($detail["deleted"])).'</p>';
+                        ?>
+                      </div>
+                      <?php
+                        echo '<p>'.$detail["description"].'</p>';
+                      ?>
+                    </div>
+                    <?php
+                    $first = false;
                   }
                 }
                 else{

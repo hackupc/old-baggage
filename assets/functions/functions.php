@@ -79,7 +79,7 @@ function getUserBaggages($pos_id){
     die("Connection failed: ".$conn->connect_error);
   }
   $query = "
-    SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description
+    SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.deleted, pos.description
     FROM hupc_positions pos
     WHERE pos.id = '".$pos_id."'
     ORDER BY pos.deleted DESC;";

@@ -21,6 +21,9 @@ a{
   font-weight: 600;
   text-decoration: none;
 }
+p{
+  margin: 0;
+}
 #background-color{
   position: fixed;
   top: 0;
@@ -112,6 +115,35 @@ a{
   margin-bottom: 10px !important;
 }
 
+/*== LIST ==*/
+.list{
+  width: 100%;
+  border-top: 1px solid #494949;
+  overflow: auto;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+.list-left{
+  width: 50%;
+  float: left;
+  overflow: auto;
+}
+.list-right{
+  width: 50%;
+  float: right;
+  text-align: right;
+  overflow: auto;
+}
+#remove-button{
+  margin-top: 25px;
+  font-weight: 100;
+}
+#remove-button:hover{
+  background-color: #F43D7A;
+  margin-top: 27px !important;
+  border-bottom: 3px solid #E91753;
+}
+
 /*== FORM ==*/
 form input[type=text]{
   width: 100%;
@@ -124,7 +156,7 @@ form input[type=checkbox]{
   margin: 0 5px 15px 0;
   padding: 2.5%;
 }
-form input[type=submit]{
+form input[type=submit], #remove-button{
   min-width: 25%;
   margin-left: auto;
   margin-right: auto;
