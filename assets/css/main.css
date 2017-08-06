@@ -1,16 +1,20 @@
 /*== MAIN STYLE ==*/
-@font-face{
+/*@font-face{
   font-family: GothamBoldRegular;
   src: url(../fonts/GothamBoldRegular.ttf);
-}
+}*/
 body{
   font-family: Ek Mukta;
   background-image: url("../img/reticula_bcn_web.png");
   background-position: center top;
   background-size: cover;
+  margin: 0;
 }
 h1, h2, h3, h4, h5, h6{
-  font-family: GothamBoldRegular;
+  /*font-family: GothamBoldRegular;*/
+  margin: 0;
+  color: #494949;
+  font-weight: 600;
 }
 #background-color{
   position: fixed;
@@ -20,30 +24,90 @@ h1, h2, h3, h4, h5, h6{
   left: 0;
   opacity: 0.85;
   background-color: #FFF;
+  z-index: -5;
 }
 #main-wrap{
   width: 90%;
-  margin: 5%;
+  margin: 3.75% 5%;
   padding: 0;
   position: relative;
+  overflow: auto;
+}
+
+/*== HEADER ==*/
+#header{
+  background-color: #E91753;
+  padding: 1.25% 5%;
+  width: 90%;
+  display: inline-flex;
+  align-items: center;
+}
+.logo{
+  height: 25px;
+  float: left;
+}
+.title{
+  float: right;
+  width: 100%;
+  margin: 0;
+  color: #FFF;
+  text-align: right;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+/*== TABS ==*/
+.user-tabs{
+  width: 23.125%;
+  margin: 0 2.5% 0 0 !important;
+  padding: 2.5%;
+  float: left;
+  color: #FFF;
+  font-weight: 500;
+  background-color: #E91753;
+  border: none;
+  text-transform: uppercase;
+  text-align: center;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  cursor: hand;
+  border-bottom: 5px solid #750B29;
+}
+.user-tabs:hover{
+  background-color: #F43D7A;
+  margin-top: 2px !important;
+  border-bottom: 3px solid #E91753;
+}
+.active{
+  background-color: #F43D7A;
+  margin-top: 2px !important;
+  border-bottom: 3px solid #E91753;
+}
+.tabs-last{
+  margin-right: 0 !important;
+}
+.user-tab{
+  margin-bottom: 4.12325%;
+  overflow: auto;
 }
 
 /*== USERS ==*/
 #user-wrap{
-  width: 25%;
+  width: 30%;
   margin: 0 2.5% 0 0;
-  padding: 1.25%;
   float: left;
 }
 .user-content{
-  display: none;
+  opacity: 0;
+  height: 0;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
 }
 
 /*== POSITIONS MAP ==*/
 #pos-wrap{
   width: 65%;
   margin: 0 0 0 2.5%;
-  padding: 1.25%;
   float: right;
 }
 #pos-wrap table{

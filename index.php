@@ -10,13 +10,17 @@
 </head>
 <body>
   <div id="background-color"></div>
+  <div id="header">
+    <a href="" class="logo"><img src="assets/img/logo.png" class="logo"/></a>
+    <a href="" class="title"><h3 class="title">Baggage check-in</h3></a>
+  </div>
   <div id="main-wrap">
     <div id="user-wrap">
       <div class="user-tab">
-        <button class="user-tabs" onclick="openTab(event, 'user-checkin')">Check-in</button>
+        <button class="user-tabs active" onclick="openTab(event, 'user-checkin')">Check-in</button>
         <button class="user-tabs" onclick="openTab(event, 'user-list')">List</button>
         <button class="user-tabs" onclick="openTab(event, 'user-history')">History</button>
-        <button class="user-tabs" onclick="openTab(event, 'user-search')">Search</button>
+        <button class="tabs-last user-tabs" onclick="openTab(event, 'user-search')">Search</button>
         <!--<?php
           if(isset($_GET['rem_row'])&&isset($_GET['rem_col'])){
             ?>
@@ -30,7 +34,7 @@
           }
         ?>-->
       </div>
-      <div id="user-checkin" class="user-content" <?php if(!((isset($_GET['rem_row'])&&isset($_GET['rem_col']))||isset($_GET['rem_id']))){ echo 'style="display: block;"'; } ?>>
+      <div id="user-checkin" class="user-content" <?php if(!((isset($_GET['rem_row'])&&isset($_GET['rem_col']))||isset($_GET['rem_id']))){ echo 'style="opacity: 1; height: inherit;"'; } ?>>
         <form method="post" id="reg_form" action="" onsubmit="return verifyForm();">
           <div>
             <h2>Baggage check-in</h2>
@@ -190,7 +194,7 @@
         if(sizeof($details)){
           ?>
             <div>
-              <h2>Special baggages</h2>
+              <h4>Special baggages</h4>
               <?php
                 foreach($details as $detail){
                   ?><a href="<?php echo '?rem_row='.$detail["row"].'&rem_col='.$detail["col"]; ?>"><?php echo $detail["row"].$detail["col"]; ?></a><?php
@@ -211,14 +215,16 @@
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("user-content");
     for(i=0; i<tabcontent.length; i++){
-      tabcontent[i].style.display = "none";
+      tabcontent[i].style.opacity = "0";
+      tabcontent[i].style.height = "0";
     }
-    tablinks = document.getElementsByClassName("tablinks");
+    tablinks = document.getElementsByClassName("user-tabs");
     for(i=0; i<tablinks.length; i++){
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].classList.remove("active");
     }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+    document.getElementById(tabName).style.opacity = "1";
+    document.getElementById(tabName).style.height = "inherit";
+    evt.currentTarget.classList.add("active");
     window.history.pushState("object or string", "Title", location.protocol+"//"+location.host+location.pathname);
   }
 </script>
