@@ -43,6 +43,31 @@ function getBaggages(){
   $conn->close();
   return $users;
 }
+function getRowBaggages($pos_row){
+  global $db_server;
+  global $db_user;
+  global $db_pass;
+  global $db_name;
+  $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+  $conn->set_charset("utf8");
+  if($conn->connect_error){
+    die("Connection failed: ".$conn->connect_error);
+  }
+  $query = "
+    SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description
+    FROM hupc_positions pos
+    WHERE (pos.row = '".$pos_row."') AND (pos.deleted IS NULL)
+    ORDER BY pos.row, pos.col;";
+  $users = array();
+  if($users2 = $conn->query($query)){
+    while($row = $users2->fetch_assoc()){
+      $users[] = $row;
+    }
+    $users2->free();
+  }
+  $conn->close();
+  return $users;
+}
 function getUserBaggages($pos_id){
   global $db_server;
   global $db_user;
@@ -93,7 +118,7 @@ function getHistory(){
   $conn->close();
   return $users;
 }
-function getInfo($pos_row, $pos_col){
+function getInfo($pos_row, $pos_col, $pos_time){
   global $db_server;
   global $db_user;
   global $db_pass;
@@ -103,10 +128,18 @@ function getInfo($pos_row, $pos_col){
   if($conn->connect_error){
     die("Connection failed: ".$conn->connect_error);
   }
-  $query = "
-    SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description
-    FROM hupc_positions pos
-    WHERE (pos.row = '".$pos_row."') AND (pos.col = '".$pos_col."') AND (pos.deleted IS NULL);";
+  if($pos_time==NULL){
+    $query = "
+      SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description
+      FROM hupc_positions pos
+      WHERE (pos.row = '".$pos_row."') AND (pos.col = '".$pos_col."') AND (pos.deleted IS NULL);";
+  }
+  else{
+    $query = "
+      SELECT pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.deleted, pos.description
+      FROM hupc_positions pos
+      WHERE (pos.row = '".$pos_row."') AND (pos.col = '".$pos_col."') AND (pos.created = '".$pos_time."');";
+  }
   $result = mysqli_query($conn, $query);
   $result = mysqli_fetch_array($result);
   return $result;

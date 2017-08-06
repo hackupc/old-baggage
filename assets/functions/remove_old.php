@@ -1,8 +1,8 @@
 <?php
     include "config.php";
 
-    $rem_row = chr($_GET['rem_row']+65);
-    $rem_col = ord($_GET['rem_col'])-48;
+    $rem_row = $_GET['rem_row'];
+    $rem_col = $_GET['rem_col'];
 
     global $db_server;
     global $db_user;

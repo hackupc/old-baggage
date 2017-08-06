@@ -14,14 +14,14 @@
       $query = "
         SELECT pos.row, pos.col
         FROM hupc_positions pos
-        WHERE (pos.deleted IS NULL) AND (pos.row <> 'SPE')
+        WHERE (pos.deleted IS NULL) AND (pos.row <> '@')
         ORDER BY pos.row, pos.col;";
     }
     else{
       $query = "
         SELECT pos.row, pos.col
         FROM hupc_positions pos
-        WHERE (pos.deleted IS NULL) AND (pos.row = 'SPE')
+        WHERE (pos.deleted IS NULL) AND (pos.row = '@')
         ORDER BY pos.row, pos.col;";
     }
     $places = array();
@@ -71,7 +71,7 @@
       $size=sizeof($places);
       $pos=0;
       $pos2=0;
-      $def_row = "ESP";
+      $def_row = '@';
       while((!$founded)&&($pos<$size)){
         if($pos!=$places[$pos]["col"]){
           $founded = true;

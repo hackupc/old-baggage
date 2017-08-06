@@ -1,12 +1,15 @@
 <html>
 <head>
-  <title>HackUPC - Baggage</title>
+  <title>HackUPC | Baggage check-in</title>
   <link rel="stylesheet" href="assets/css/main.css">
   <?php include "assets/functions/functions.php" ?>
   <script src="assets/js/form.js" type="text/javascript"></script>
   <script src="https://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
+  <link href="https://fonts.googleapis.com/css?family=Ek+Mukta" rel="stylesheet">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+  <div id="background-color"></div>
   <div id="main-wrap">
     <div id="user-wrap">
       <div class="user-tab">
@@ -49,6 +52,8 @@
         <?php
           $users = getBaggages();
           foreach($users as $user){
+            ?><a href="<?php echo '?rem_row='.$user["row"].'&rem_col='.$user["col"]; ?>"><?php echo $user["row"].$user["col"]; ?></a><?php
+            echo ' ';
             ?><a href="<?php echo '?rem_id='.$user["id"]; ?>"><?php echo $user["id"]; ?></a><?php
             echo ' '.$user["name"].' ';
             echo $user["surname"].' ';
@@ -63,6 +68,8 @@
         <?php
           $users = getHistory();
           foreach($users as $user){
+            ?><a href="<?php echo '?rem_row='.$user["row"].'&rem_col='.$user["col"].'&rem_time='.$user["created"]; ?>"><?php echo $user["row"].$user["col"]; ?></a><?php
+            echo ' ';
             ?><a href="<?php echo '?rem_id='.$user["id"]; ?>"><?php echo $user["id"]; ?></a><?php
             echo ' '.$user["name"].' ';
             echo $user["surname"].' ';
@@ -89,20 +96,27 @@
                 <h2>Baggage details</h2>
               </div>
               <?php
-                $details_row = chr($_GET['rem_row']+65);
-                $details_col = ord($_GET['rem_col'])-48;
-                $details = getInfo($details_row, $details_col);
+                $details_row = $_GET['rem_row'];
+                $details_col = $_GET['rem_col'];
+                if(isset($_GET['rem_time'])){
+                  $details = getInfo($details_row, $details_col, $_GET['rem_time']);
+                }
+                else{
+                  $details = getInfo($details_row, $details_col, NULL);
+                }
                 echo $details_row.$details_col.'</br>';
                 ?><a href="<?php echo '?rem_id='.$details["id"]; ?>"><?php echo $details["id"]; ?></a><?php
                 echo ' '.$details["name"].' ';
                 echo $details["surname"].'</br>';
+                echo $details["created"].'</br>';
+                if(isset($_GET['rem_time'])){
+                  echo $details["deleted"];
+                }
+                echo '</br>';
                 ?>
                   <a href="<?php echo 'assets/functions/remove_old.php?rem_row='.$_GET['rem_row'].'&rem_col='.$_GET['rem_col']; ?>">Remove baggage</a>
                 <?php
               ?>
-              </br>
-              </br>
-              <a href="./"><< Go back</a>
             </div>
           <?php
         }
@@ -120,7 +134,7 @@
                   echo $details[0]["name"].' ';
                   echo $details[0]["surname"].'</br></br>';
                   foreach($details as $detail){
-                    ?><a href="<?php echo '?rem_row='.$detail["row"].'&rem_col='.$detail["col"]; ?>"><?php echo $detail["row"].$detail["col"]; ?></a><?php
+                    ?><a href="<?php echo '?rem_row='.$detail["row"].'&rem_col='.$detail["col"].'&rem_time='.$detail["created"]; ?>"><?php echo $detail["row"].$detail["col"]; ?></a><?php
                     echo ' '.$detail["created"].'</br></br>';
                   }
                 }
@@ -128,7 +142,6 @@
                   echo "There's no baggage with the ID/Passport provided.";
                 }
               ?>
-            <a href="./"><< Go back</a>
             </div>
           <?php
         }
@@ -155,7 +168,7 @@
                 }
                 else if(getOcupation(numToChar($ini_row), $ini_col)!=NULL){
                   ?><td id="<?php echo 'hupc-pos_'.$ini_row.'-'.$ini_col; ?>" style="background-color: #db4646;"><?php
-                    ?><a href="<?php echo '?rem_row='.$ini_row.'&rem_col='.$ini_col; ?>"><?php echo numToChar($ini_row).$ini_col; ?></a><?php
+                    ?><a href="<?php echo '?rem_row='.numToChar($ini_row).'&rem_col='.$ini_col; ?>"><?php echo numToChar($ini_row).$ini_col; ?></a><?php
                   ?></td><?php
                   $ini_col++;
                 }
@@ -172,6 +185,23 @@
           }
         ?>
       </table>
+      <?php
+        $details = getRowBaggages('@');
+        if(sizeof($details)){
+          ?>
+            <div>
+              <h2>Special baggages</h2>
+              <?php
+                foreach($details as $detail){
+                  ?><a href="<?php echo '?rem_row='.$detail["row"].'&rem_col='.$detail["col"]; ?>"><?php echo $detail["row"].$detail["col"]; ?></a><?php
+                  echo ' '.$detail["created"].'</br>';
+                }
+              ?>
+            </div>
+          <?php
+        }
+        ?>
+      </div>
     </div>
   </div>
 </body>
@@ -189,5 +219,6 @@
     }
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+    window.history.pushState("object or string", "Title", location.protocol+"//"+location.host+location.pathname);
   }
 </script>
