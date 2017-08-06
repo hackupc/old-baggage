@@ -6,5 +6,5 @@ $db_pass = "";
 $db_name = "hackupc_baggage";
 
 $rows = 10;
-$cols = 12;
+$cols = 14;
 ?>

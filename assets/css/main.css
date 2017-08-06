@@ -49,17 +49,17 @@ h1, h2, h3, h4, h5, h6{
 #pos-wrap table{
   width: 100%;
   text-align: center;
-  border-collapse: collapse;
-  border: 1px solid #000;
+  border-collapse: separate;
   table-layout: fixed;
+  border-spacing: 5px;
 }
 #pos-wrap tr, th, td{
   border-collapse: collapse;
-  border: 5px solid #FFF;
   padding: 0.625% 0;
 }
 #pos-wrap td{
   background-color: #a0ff75;
+  margin: 5px;
 }
 .pos-med{
   opacity: 0;
