@@ -31,17 +31,34 @@
             <button class="user-tabs" onclick="openTab(event, 'user-history')">History</button>
             <button class="tabs-last user-tabs" onclick="openTab(event, 'user-search')">Search</button>
           </div>
-          <div id="user-checkin" class="user-content" <?php if(!((isset($_GET['rem_row'])&&isset($_GET['rem_col']))||isset($_GET['rem_id']))){ echo 'style="opacity: 1; height: inherit;"'; } ?>>
+          <div id="user-checkin" class="user-content" <?php if(((isset($_GET['new_row']))&&(isset($_GET['new_col'])))||!((isset($_GET['rem_row'])&&isset($_GET['rem_col']))||isset($_GET['rem_id']))){ echo 'style="opacity: 1; height: inherit;"'; } ?>>
             <form method="post" id="reg_form" action="" onsubmit="return verifyForm();">
               <div>
                 <h2 class="user-title">Baggage check-in</h2>
+                <?php
+                  if((isset($_GET['new_row']))&&(isset($_GET['new_col']))){
+                    echo '<p class="user-title">Position selected: '.$_GET['new_row'].$_GET['new_col'].' (<a href="./">Remove</a>)</p>';
+                  }
+                ?>
               </div>
               <div>
                 <input type="text" id="reg_id" name="reg_id" placeholder="ID/Passport">
                 <input type="text" id="reg_name" name="reg_name" placeholder="Name">
                 <input type="text" id="reg_surname" name="reg_surname" placeholder="Surname">
                 <input type="text" id="reg_desc" name="reg_desc" placeholder="Description">
-                <input type="checkbox" id="reg_spe" name="reg_spe" value="Special">Special<br>
+                <?php
+                  if((isset($_GET['new_row']))&&(isset($_GET['new_col']))){
+                    ?>
+                      <input type="hidden" id="reg_row" name="reg_row" value="<?php echo $_GET['new_row']; ?>">
+                      <input type="hidden" id="reg_col" name="reg_col" value="<?php echo $_GET['new_col']; ?>">
+                    <?php
+                  }
+                  else{
+                    ?>
+                      <input type="checkbox" id="reg_spe" name="reg_spe" value="Special">Special<br>
+                    <?php
+                  }
+                ?>
                 <input type="submit" id="reg_submit" name="reg_submit" value="Submit">
               </div>
             </form>
@@ -219,9 +236,9 @@
                       $ini_col++;
                     }
                     else{
-                      ?><td id="<?php echo 'hupc-pos_'.$ini_row.'-'.$ini_col; ?>"><?php
-                        echo numToChar($ini_row).$ini_col;
-                      ?></td><?php
+                      ?><td id="<?php echo 'hupc-pos_'.$ini_row.'-'.$ini_col; ?>">
+                          <a class="free" href="<?php echo '?new_row='.numToChar($ini_row).'&new_col='.$ini_col; ?>"><?php echo numToChar($ini_row).$ini_col; ?></a>
+                        </td><?php
                       $ini_col++;
                     }
                   }
