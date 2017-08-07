@@ -3,6 +3,12 @@
 CREATE DATABASE hackupc_baggage;
 USE hackupc_baggage;
 
+CREATE TABLE hupc_users (
+  username varchar(25) CHARACTER SET utf8 COLLATE utf8_bin,
+  password varchar(1024) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (username)
+)
+
 CREATE TABLE hupc_positions (
   row char(1) CHARACTER SET utf8 COLLATE utf8_bin,
   col smallint(6),

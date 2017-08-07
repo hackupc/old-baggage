@@ -145,7 +145,7 @@ p{
 }
 
 /*== FORM ==*/
-form input[type=text]{
+form input[type=text], input[type=password]{
   width: 100%;
   margin-bottom: 15px;
   padding: 2.5%;
@@ -212,4 +212,31 @@ form input[type=submit]:hover{
 }
 .special-title{
   margin-bottom: 2.5px !important;
+}
+
+/*== LOGIN FORM ==*/
+#login-wrap{
+  position: fixed;
+  display: flex;
+  align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#login-form{
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2.5%;
+}
+.centered{
+  text-align: center;
+}
+.logo2{
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 2.5%;
 }
