@@ -5,7 +5,7 @@
 <html>
 <head>
   <title>HackUPC | Baggage check-in</title>
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/main.css?v=2">
   <?php include "assets/functions/functions.php" ?>
   <script src="assets/js/form.js" type="text/javascript"></script>
   <script src="assets/js/tabs.js" type="text/javascript"></script>
@@ -169,7 +169,11 @@
                           </div>
                           <div class="list-right">
                             <?php
-                              echo '<p>'.date("j g:i\h", strtotime($detail["created"])).' - '.date("j g:i\h", strtotime($detail["deleted"])).'</p>';
+                              echo '<p>'.date("j g:i\h", strtotime($detail["created"]));
+                              if($detail["deleted"]!=""){
+                                echo ' - '.date("j g:i\h", strtotime($detail["deleted"]));
+                              }
+                              echo '</p>';
                             ?>
                           </div>
                           <?php
