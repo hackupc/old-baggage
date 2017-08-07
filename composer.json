@@ -1,12 +1,14 @@
 {
   "name": "oriol20/hackupc-baggage",
-  "repositories": [
+  "license": "GPL-3.0+",
+  "authors": [
     {
-      "type": "vcs",
-      "url": "https://github.com/oriol20/HackUPC-Baggage"
+      "name": "Oriol Closa",
+      "email": "oriol.closa@est.fib.upc.edu",
+      "role": "Developer"
     }
   ],
   "require": {
-    "monolog/monolog": "1.0.*"
+    "laravel/lumen": "5.4.*"
   }
 }
