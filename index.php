@@ -235,6 +235,12 @@
                       ?></td><?php
                       $ini_col++;
                     }
+                    else if(((isset($_GET['new_row']))&&(isset($_GET['new_col'])))&&(($_GET['new_row']==numToChar($ini_row))&&($_GET['new_col']==$ini_col))){
+                      ?><td id="<?php echo 'hupc-pos_'.$ini_row.'-'.$ini_col; ?>" style="background-color: #FF78A5;"><?php
+                        ?><a class="occupied" href="<?php echo '?rem_row='.numToChar($ini_row).'&rem_col='.$ini_col; ?>"><?php echo numToChar($ini_row).$ini_col; ?></a><?php
+                      ?></td><?php
+                      $ini_col++;
+                    }
                     else{
                       ?><td id="<?php echo 'hupc-pos_'.$ini_row.'-'.$ini_col; ?>">
                           <a class="free" href="<?php echo '?new_row='.numToChar($ini_row).'&new_col='.$ini_col; ?>"><?php echo numToChar($ini_row).$ini_col; ?></a>
