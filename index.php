@@ -5,7 +5,7 @@
 <html>
 <head>
   <title>HackUPC | Baggage check-in</title>
-  <link rel="stylesheet" href="assets/css/main.css?v=2">
+  <link rel="stylesheet" href="assets/css/main.css?v=3">
   <?php include "assets/functions/functions.php" ?>
   <script src="assets/js/form.js" type="text/javascript"></script>
   <script src="assets/js/tabs.js" type="text/javascript"></script>
