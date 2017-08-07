@@ -1,0 +1,12 @@
+{
+  "name": "oriol20/hackupc-baggage",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/oriol20/HackUPC-Baggage"
+    }
+  ],
+  "require": {
+    "monolog/monolog": "1.0.*"
+  }
+}
