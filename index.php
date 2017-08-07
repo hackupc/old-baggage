@@ -132,9 +132,11 @@
                   echo ' - '.date("j/Y g:i\h", strtotime($details["deleted"]));
                 }
                 echo '</p>';
-                ?>
-                  <a id="remove-button" href="<?php echo 'assets/functions/remove_old.php?rem_row='.$_GET['rem_row'].'&rem_col='.$_GET['rem_col']; ?>">Remove baggage</a>
-                <?php
+                if(!isset($_GET['rem_time'])){
+                  ?>
+                    <a id="remove-button" href="<?php echo 'assets/functions/remove_old.php?rem_row='.$_GET['rem_row'].'&rem_col='.$_GET['rem_col']; ?>">Remove baggage</a>
+                  <?php
+                }
               ?>
             </div>
           <?php
