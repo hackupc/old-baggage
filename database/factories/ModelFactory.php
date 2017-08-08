@@ -11,19 +11,11 @@
 |
 */
 
-$factory->define(App\User::class, function ($faker) {
+$factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
-        'username' => $faker->username
-    ];
-});
-
-$factory->define(App\Position::class, function ($faker) {
-    return [
-        'row' => $faker->randomElement($array = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J')),
-        'col' => $faker->numberBetween($min=0, $max=13),
-        'id' => $faker->creditCardNumber,
-        'name' => $faker->firstName,
-        'surname' => $faker->lastName,
-        'description' => $faker->sentence($nbWords = 6, $variableNbWords = true)
+        'name' => $faker->name,
+        'email' => $faker->safeEmail,
+        'password' => bcrypt(str_random(10)),
+        'remember_token' => str_random(10),
     ];
 });

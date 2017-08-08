@@ -1,0 +1,247 @@
+/*== MAIN STYLE ==*/
+/*@font-face{
+  font-family: GothamBoldRegular;
+  src: url(../fonts/GothamBoldRegular.ttf);
+}*/
+body{
+  font-family: Ek Mukta;
+  background-image: url("../img/reticula_bcn_web.png");
+  background-position: center top;
+  background-size: cover;
+  margin: 0;
+}
+h1, h2, h3, h4, h5, h6{
+  /*font-family: GothamBoldRegular;*/
+  margin: 0;
+  color: #494949;
+  font-weight: 600;
+}
+a{
+  color: #494949;
+  font-weight: 600;
+  text-decoration: none;
+}
+p{
+  margin: 0;
+}
+#background-color{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.85;
+  background-color: #FFF;
+  z-index: -5;
+}
+#main-wrap{
+  width: 90%;
+  margin: 3.75% 5%;
+  padding: 0;
+  position: relative;
+  overflow: auto;
+}
+
+/*== HEADER ==*/
+#header{
+  background-color: #E71754;
+  padding: 1.25% 5%;
+  width: 90%;
+  display: inline-flex;
+  align-items: center;
+}
+.logo{
+  height: 25px;
+  float: left;
+}
+.title{
+  float: right;
+  width: 100%;
+  margin: 0;
+  color: #FFF;
+  text-align: right;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+/*== TABS ==*/
+.user-tabs{
+  width: 23.125%;
+  margin: 0 2.5% 0 0 !important;
+  padding: 2.5%;
+  float: left;
+  color: #FFF;
+  font-weight: 500;
+  background-color: #E71754;
+  border: none;
+  text-transform: uppercase;
+  text-align: center;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  cursor: hand;
+  border-bottom: 5px solid #750B29;
+}
+.user-tabs:hover{
+  background-color: #F43D7A;
+  margin-top: 2px !important;
+  border-bottom: 3px solid #E91753;
+}
+.active{
+  background-color: #F43D7A;
+  margin-top: 2px !important;
+  border-bottom: 3px solid #E91753;
+}
+.tabs-last{
+  margin-right: 0 !important;
+}
+.user-tab{
+  margin-bottom: 8.2465%;
+  overflow: auto;
+}
+
+/*== USERS ==*/
+#user-wrap{
+  width: 30%;
+  margin: 0 2.5% 0 0;
+  float: left;
+}
+.user-content{
+  opacity: 0;
+  height: 0;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+}
+.user-title{
+  margin-bottom: 10px !important;
+}
+
+/*== LIST ==*/
+.list{
+  width: 100%;
+  border-top: 1px solid #494949;
+  overflow: auto;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+.list-left{
+  width: 50%;
+  float: left;
+  overflow: auto;
+}
+.list-right{
+  width: 50%;
+  float: right;
+  text-align: right;
+  overflow: auto;
+}
+#remove-button{
+  margin-top: 25px;
+  font-weight: 100;
+}
+#remove-button:hover{
+  background-color: #F43D7A;
+  margin-top: 27px !important;
+  border-bottom: 3px solid #E91753;
+}
+
+/*== FORM ==*/
+form input[type=text], input[type=password]{
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 2.5%;
+  border: 1px solid #494949;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+form input[type=checkbox]{
+  margin: 0 5px 15px 0;
+  padding: 2.5%;
+}
+form input[type=submit], #remove-button{
+  min-width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 2.5%;
+  color: #FFF;
+  font-weight: 500;
+  background-color: #E71754;
+  border: none;
+  text-transform: uppercase;
+  text-align: center;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  cursor: hand;
+  border-bottom: 5px solid #750B29;
+}
+form input[type=submit]:hover{
+  background-color: #F43D7A;
+  margin-top: 2px !important;
+  border-bottom: 3px solid #E91753;
+}
+
+/*== POSITIONS MAP ==*/
+#pos-wrap{
+  width: 65%;
+  margin: 0 0 0 2.5%;
+  float: right;
+}
+#pos-wrap table{
+  width: 100%;
+  text-align: center;
+  border-collapse: separate;
+  table-layout: fixed;
+  border-spacing: 5px;
+  margin: -5px -5px 3.8075% -5px;
+}
+#pos-wrap tr, th, td{
+  border-collapse: collapse;
+  padding: 0.625% 0;
+}
+#pos-wrap td{
+  background-color: #DBDBDB;
+  margin: 5px;
+}
+.pos-med{
+  opacity: 0;
+  width: 2.5%;
+}
+.occupied{
+  color: #FFF;
+  font-weight: 600;
+  text-decoration: none;
+}
+.free{
+  color: #494949;
+  font-weight: 200;
+  text-decoration: none;
+}
+.special-title{
+  margin-bottom: 2.5px !important;
+}
+
+/*== LOGIN FORM ==*/
+#login-wrap{
+  position: fixed;
+  display: flex;
+  align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#login-form{
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2.5%;
+}
+.centered{
+  text-align: center;
+}
+.logo2{
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 2.5%;
+}
