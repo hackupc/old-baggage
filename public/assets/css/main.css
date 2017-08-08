@@ -1,8 +1,8 @@
 /*== MAIN STYLE ==*/
-/*@font-face{
+@font-face{
   font-family: GothamBoldRegular;
   src: url(../fonts/GothamBoldRegular.ttf);
-}*/
+}
 body{
   font-family: Ek Mukta;
   background-image: url("../img/reticula_bcn_web.png");
@@ -68,6 +68,7 @@ p{
   width: 90%;
   display: inline-flex;
   align-items: center;
+  justify-content: space-between;
 }
 .logo{
   height: 25px;
@@ -75,11 +76,10 @@ p{
 }
 .title{
   float: right;
-  width: 100%;
   margin: 0;
   color: #FFF;
   text-align: right;
-  font-weight: 200;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -168,7 +168,7 @@ form input[type=text], input[type=password], input[type=email]{
   width: 94.5%;
   margin-bottom: 15px;
   padding: 2.5%;
-  border: 1px solid #494949;
+  border: 1px solid rgba(73, 73, 73, 0.75);
   background-color: rgba(255, 255, 255, 0.25);
 }
 form input[type=checkbox]{
@@ -180,7 +180,7 @@ form input[type=submit], #remove-button{
   margin-left: auto;
   margin-right: auto;
   display: block;
-  padding: 2.5%;
+  padding: 2.75% 2.5% 2.25% 2.5%;
   color: #FFF;
   font-weight: 500;
   background-color: #E71754;
@@ -191,6 +191,9 @@ form input[type=submit], #remove-button{
   cursor: pointer;
   cursor: hand;
   border-bottom: 5px solid #750B29;
+  font-family: GothamBoldRegular;
+  font-size: 14px;
+  line-height: 14px;
 }
 form input[type=submit]:hover{
   background-color: #F43D7A;
@@ -257,10 +260,18 @@ form input[type=submit]:hover{
 .centered{
   text-align: center;
 }
-.logo2{
-  width: 75%;
+#logo2{
+  width: 100%;
+}
+#logo3{
+  width: 40%;
+  float: right;
+}
+#login-logos{
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   display: block;
   margin-bottom: 2.5%;
+  overflow: auto;
 }

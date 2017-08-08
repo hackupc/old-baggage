@@ -3,8 +3,12 @@
 @section('content')
 <div id="login-wrap">
   <div id="login-form">
-    <a href="" class="logo2"><img src="assets/img/logo2.png" class="logo2"/></a>
-    <h1 class="user-title centered">Baggage check-in</h1>
+    <div id="login-logos">
+      <a href="" class="logo2">
+        <img src="assets/img/baggage.png" id="logo2"/>
+        <img src="assets/img/byhackupc.png" id="logo3"/>
+      </a>
+    </div>
     <form class="login-form" role="form" method="POST" action="{{ url('/login') }}">
       {{ csrf_field() }}
       <div>

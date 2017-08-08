@@ -20,6 +20,10 @@
     <!-- Icon -->
     <link rel="shortcut icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon">
 
+    <!-- Scripts -->
+    <script src="{{ URL::asset('assets/js/form.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('assets/js/tabs.js') }}" type="text/javascript"></script>
+
     <style>
         body {
             font-family: 'Lato';
@@ -34,7 +38,7 @@
   @if(!Auth::guest())
     <div id="header">
       <a href="" class="logo"><img src="assets/img/logo.png" class="logo"/></a>
-      <a href="{{ url('/logout') }}" class="title"><h3 class="title">Logout</h3></a>
+      <a href="{{ url('/logout') }}" class="title"><h4 class="title">Logout</h4></a>
     </div>
     @endif
     <div id="background-color"></div>
