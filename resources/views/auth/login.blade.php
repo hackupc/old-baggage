@@ -11,7 +11,7 @@
         <h2 class="user-title">Login</h2>
       </div>
       <div>
-        <input id="email" type="email" name="email" placeholder="E-mail" value="{{ old('email') }}">
+        <input id="username" type="text" name="username" placeholder="Username" value="{{ old('email') }}">
         @if ($errors->has('email'))
             <span class="help-block">
                 <strong>{{ $errors->first('email') }}</strong>

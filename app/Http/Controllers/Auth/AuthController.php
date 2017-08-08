@@ -30,6 +30,10 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
+    public function loginUsername(){
+        return 'username';
+    }
+
     /**
      * Create a new authentication controller instance.
      *
