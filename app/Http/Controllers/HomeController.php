@@ -23,7 +23,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-      $baggages = \DB::select('select pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description from hupc_positions pos where pos.deleted is null order by pos.row, pos.col');
+      $baggages = \DB::select('select pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description from positions pos where pos.deleted is null order by pos.row, pos.col');
       return view('home', ['baggages' => $baggages]);
     }
 }

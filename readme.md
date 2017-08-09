@@ -16,6 +16,8 @@ Needs: PHP 5.4.X
 - `php artisan migrate:refresh --seed`
 - `php artisan serve`
 
+You can now enter http://localhost:8000 with username `volunteer` and password `volunteer`.
+
 ## Available enviroment variables
 
 - **DB_CONNECTION**: Can be any of the following: mysql, postgres, sqlite, sqlsrv.
