@@ -15,6 +15,10 @@
       @foreach($baggages as $baggage_row)
         <tr>
           @foreach($baggage_row as $baggage)
+            @if($baggage[1]==$med_col)
+              <td id="hupc-pos_{{ $baggage[0] }}-corridor" class="pos-med">
+              </td>
+            @endif
             @if($baggage[2])
               <td id="hupc-pos_{{ $baggage[0] }}{{ $baggage[1] }}" style="background-color: #E71754;">
                 <a class="occupied" href="/current/{{ $baggage[0] }}{{ $baggage[1] }}">{{ $baggage[0] }}{{ $baggage[1] }}</a>
