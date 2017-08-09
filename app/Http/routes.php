@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function(){
+  return redirect('list');
+});
+Route::get('list', 'HomeController@index');
 Route::get('create', 'HomeController@create');
 Route::get('create/{position}', 'HomeController@createSpecific');
 

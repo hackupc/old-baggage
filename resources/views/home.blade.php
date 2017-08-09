@@ -5,7 +5,7 @@
   <div id="user-wrap">
     <div class="user-tab">
       <a class="user-tabs {{ $tabs[0] }}" href="/create">Check-in</a>
-      <a class="user-tabs {{ $tabs[1] }}" href="/">List</a>
+      <a class="user-tabs {{ $tabs[1] }}" href="/list">List</a>
       <a class="user-tabs {{ $tabs[2] }}" href="/history">History</a>
       <a class="tabs-last user-tabs {{ $tabs[3] }}" href="/search">Search</a>
     </div>
@@ -40,33 +40,17 @@
           <h2 class="user-title">Baggage list</h2>
         </div>
         @foreach($lists as $list)
-          <p>{{ $list['row'] }}{{ $list['col'] }}</p>
+        <div class="list">
+          <div class="list-left">
+            <a href="/list/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
+            <p>{{ date("j/Y g:i\h", strtotime($list['created'])) }}</p>
+          </div>
+          <div class="list-right">
+            <a href="/user/{{ $list['id'] }}">{{ $list['id'] }}</a>
+            <p>{{ $list['name'] }} {{ $list['surname'] }}</p>
+          </div>
+        </div>
         @endforeach
-        <?php
-          $users = array();
-          $first = true;
-          foreach($users as $user){
-            ?>
-              <div class="list" <?php if($first){ echo 'style="padding-top: 0; border-top: 0;"'; } ?>>
-                <div class="list-left">
-                  <a href="<?php echo '?rem_row='.$user["row"].'&rem_col='.$user["col"]; ?>"><?php echo $user["row"].$user["col"]; ?></a>
-                <?php
-                  echo '<p>'.date("j/Y g:i\h", strtotime($user["created"])).'</p>';
-                ?>
-                </div>
-              <?php
-              ?>
-                <div class="list-right">
-                  <a href="<?php echo '?rem_id='.$user["id"]; ?>"><?php echo $user["id"]; ?></a>
-                  <?php
-                    echo '<p>'.$user["name"].' '.$user["surname"].'</p>';
-                  ?>
-                </div>
-              </div>
-            <?php
-            $first = false;
-          }
-        ?>
       </div>
     @endif
   </div>
