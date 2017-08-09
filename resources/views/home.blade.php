@@ -19,6 +19,7 @@
             @endif
           </div>
           <div>
+            {{ csrf_field() }}
             <input type="text" id="reg_id" name="reg_id" placeholder="ID/Passport">
             <input type="text" id="reg_name" name="reg_name" placeholder="Name">
             <input type="text" id="reg_surname" name="reg_surname" placeholder="Surname">
@@ -79,6 +80,7 @@
             <h2 class="user-title">User search</h2>
           </div>
           <div>
+            {{ csrf_field() }}
             <input type="text" id="sea_id" name="sea_id" placeholder="DNI/Passport">
             <input type="submit" id="sea_submit" name="sea_submit" value="Submit">
           </div>

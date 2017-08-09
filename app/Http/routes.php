@@ -17,9 +17,13 @@ Route::get('/', function(){
 Route::get('list', 'HomeController@index');
 Route::get('create', 'HomeController@create');
 Route::get('create/{position}', 'HomeController@createSpecific');
+Route::post('create/{id}/{name}/{surname}/{desc}/{spe}', function(){
+  return redirect('/');
+});
 Route::get('history', 'HomeController@history');
 Route::get('search', 'HomeController@search');
 Route::get('user/{id}', 'HomeController@userSpecific');
+Route::post('user/{id}', 'HomeController@userSpecific');
 Route::get('user/{id}/{position}', 'HomeController@indexSpecific');
 
 Route::get('login', 'Auth\AuthController@showLoginForm');

@@ -19,7 +19,7 @@ function verifyForm(){
       e3.placeholder = "The surname is mandatory";
     }
     if(flag==true){
-      document.getElementById('reg_form').action = "assets/functions/register_new.php";
+      document.getElementById('reg_form').action = "/create/"+e1.value+"/"+e2.value+"/"+e3.value+"/"+document.getElementById('reg_desc').value+"/"+document.getElementById('reg_spe').value;
     }
     return flag;
 }
@@ -32,7 +32,7 @@ function verifySearch(){
       e1.placeholder = "The ID/Passport is mandatory";
     }
     if(flag==true){
-      document.getElementById('sea_form').action = "?rem_id="+e1.value;
+      document.getElementById('sea_form').action = "/user/"+e1.value;
     }
     return flag;
 }
