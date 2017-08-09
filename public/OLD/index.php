@@ -17,7 +17,7 @@
   <div id="background-color"></div>
   <?php
     $logged_in = isset($_SESSION['username'])?true:false;
-    if($logged_in){
+    if(!$logged_in){
       ?>
       <div id="header">
         <a href="" class="logo"><img src="assets/img/logo.png" class="logo"/></a>

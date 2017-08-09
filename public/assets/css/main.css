@@ -217,7 +217,7 @@ form input[type=submit]:hover{
 }
 #pos-wrap tr, th, td{
   border-collapse: collapse;
-  padding: 0.625% 0;
+  padding: 1.25% 0;
 }
 #pos-wrap td{
   background-color: #DBDBDB;
@@ -268,7 +268,7 @@ form input[type=submit]:hover{
   float: right;
 }
 #login-logos{
-  width: 100%;
+  width: 85%;
   margin-left: auto;
   margin-right: auto;
   display: block;
