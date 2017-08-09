@@ -54,7 +54,6 @@ class HomeController extends Controller
       $newposition = array(substr($position, 0, 1), substr($position, 1));
       $list = Position::specific($newposition[0], $newposition[1]);
       $list = json_decode( json_encode($list), true);
-      $list = $list[0];
       $specials = Position::current_specials();
       $specials = json_decode( json_encode($specials), true);
 

@@ -92,16 +92,20 @@
         <div>
           <h2 class="user-title">Baggage details</h2>
         </div>
-        <h3>{{ $list['row'] }}{{ $list['col'] }}</h3>
-        <p><a href="/user/{{ $list['id'] }}">{{ $list['id'] }}</a>: {{ $list['name'] }} {{ $list['surname'] }}</p>
-        <p>{{ $list['description'] }}</p>
-        <p>{{ date("j/Y g:i\h", strtotime($list['created'])) }}
-          @if(!empty($list['deleted']))
-            - {{ date("j/Y g:i\h", strtotime($list['deleted'])) }}</p>
-          @else
-            </p>
-            <a id="remove-button" href="/remove/{{ $list['row'] }}{{ $list['col'] }}">Remove baggage</a>
-          @endif
+        @if(empty($user[0]))
+          <p>There's no baggage with the details provided.</p>
+        @else
+          <h3>{{ $list[0]['row'] }}{{ $list[0]['col'] }}</h3>
+          <p><a href="/user/{{ $list['id'] }}">{{ $list[0]['id'] }}</a>: {{ $list[0]['name'] }} {{ $list[0]['surname'] }}</p>
+          <p>{{ $list[0]['description'] }}</p>
+          <p>{{ date("j/Y g:i\h", strtotime($list[0]['created'])) }}
+            @if(!empty($list[0]['deleted']))
+              - {{ date("j/Y g:i\h", strtotime($list[0]['deleted'])) }}</p>
+            @else
+              </p>
+              <a id="remove-button" href="/remove/{{ $list['row'] }}{{ $list['col'] }}">Remove baggage</a>
+            @endif
+        @endif
       </div>
     @endif
     @if($tabs2[5]==true)
@@ -110,7 +114,7 @@
           <h2 class="user-title">User history</h2>
         </div>
         @if(empty($user[0]))
-          <p>There's no baggage with the ID/Passport provided.</p>
+          <p>There's no user with the details provided.</p>
         @else
           <h3>{{ $user[0]['id'] }}</h3>
           <p>{{ $user[0]['name'] }} {{ $user[0]['surname'] }}</p>
