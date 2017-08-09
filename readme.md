@@ -27,10 +27,6 @@ You can now enter http://localhost:8000 with username `volunteer` and password `
 - **DB_USERNAME**: The username to connect to the database.
 - **DB_PASSWOR**: The password to connect to the database.
 
-## To-do
-
-- Add functionality to the remove baggage button.
-
 ## License
 
 MIT © Hackers@UPC

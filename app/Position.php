@@ -45,4 +45,8 @@ class Position extends Model
     public static function baggage($created, $ini_row, $ini_col){
       return \DB::table('positions')->select('*')->where([['row', $ini_row], ['col', $ini_col], ['created', $created]])->get();
     }
+
+    public static function deleteSpecific($id0, $id1){
+      return \DB::update('update positions set deleted = CURRENT_TIMESTAMP where row = ? and col = ?', [$id0, $id1]);
+    }
 }

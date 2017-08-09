@@ -211,8 +211,18 @@ class HomeController extends Controller
       $reg_desc = $desc;
 
       Position::register($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, $reg_desc);
+      $current = Position::ocupation($reg_row, $reg_col);
+      $current = json_decode( json_encode($current), true);
 
-      return redirect("/user"."/".$reg_id."/".$reg_row.$reg_col);
+      return redirect("/baggage"."/".strtotime($current[0]['created'])."/".$reg_row.$reg_col);
+    }
+
+    public function deleteSpecific($id){
+      $ids = array(substr($id, 0, 1), substr($id, 1));
+
+      Position::deleteSpecific($ids[0], $ids[1]);
+
+      return redirect("/list");
     }
 
     public function history(){

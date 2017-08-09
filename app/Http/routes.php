@@ -22,9 +22,7 @@ Route::get('history', 'HomeController@history');
 Route::get('search', 'HomeController@search');
 Route::get('user/{id}', 'HomeController@userSpecific');
 Route::post('user/{id}', 'HomeController@userSpecific');
-Route::get('remove/{id}', function(){
-  return redirect('/');
-});
+Route::get('remove/{id}', 'HomeController@deleteSpecific');
 Route::get('baggage/{created}/{position}', 'HomeController@indexSpecific');
 
 Route::get('login', 'Auth\AuthController@showLoginForm');

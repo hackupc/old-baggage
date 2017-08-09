@@ -44,7 +44,7 @@
         <div class="list">
           <div class="list-left">
             <a href="/baggage/{{ strtotime($list['created']) }}/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
-            <p>{{ date("j/Y g:i\h", strtotime($list['created'])) }}</p>
+            <p>{{ date("j/Y H:i\h", strtotime($list['created'])) }}</p>
           </div>
           <div class="list-right">
             <a href="/user/{{ $list['id'] }}">{{ $list['id'] }}</a>
@@ -63,7 +63,7 @@
         <div class="list">
           <div class="list-left">
             <a href="/baggage/{{ strtotime($list['created']) }}/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
-            <p>{{ date("j/y g:i\h", strtotime($list['created'])) }} - {{ date("j/y g:i\h", strtotime($list['deleted'])) }}</p>
+            <p>{{ date("j/y H:i\h", strtotime($list['created'])) }} - {{ date("j/y H:i\h", strtotime($list['deleted'])) }}</p>
           </div>
           <div class="list-right">
             <a href="/user/{{ $list['id'] }}">{{ $list['id'] }}</a>
@@ -98,9 +98,9 @@
           <h3>{{ $list[0]['row'] }}{{ $list[0]['col'] }}</h3>
           <p><a href="/user/{{ $list[0]['id'] }}">{{ $list[0]['id'] }}</a>: {{ $list[0]['name'] }} {{ $list[0]['surname'] }}</p>
           <p>{{ $list[0]['description'] }}</p>
-          <p>{{ date("j/Y g:i\h", strtotime($list[0]['created'])) }}
+          <p>{{ date("j/Y H:i\h", strtotime($list[0]['created'])) }}
             @if(!empty($list[0]['deleted']))
-              - {{ date("j/Y g:i\h", strtotime($list[0]['deleted'])) }}</p>
+              - {{ date("j/Y H:i\h", strtotime($list[0]['deleted'])) }}</p>
             @else
               </p>
               <a id="remove-button" href="/remove/{{ $list[0]['row'] }}{{ $list[0]['col'] }}">Remove baggage</a>
@@ -124,9 +124,9 @@
               <a href="/baggage/{{ strtotime($list['created']) }}/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
             </div>
             <div class="list-right">
-              <p>{{ date("j/Y g:i\h", strtotime($list['created'])) }}
+              <p>{{ date("j/Y H:i\h", strtotime($list['created'])) }}
                 @if(!empty($list['deleted']))
-                  - {{ date("j/Y g:i\h", strtotime($list['deleted'])) }}
+                  - {{ date("j/Y H:i\h", strtotime($list['deleted'])) }}
                 @endif
               </p>
             </div>
