@@ -16,6 +16,6 @@ Needs: PHP 5.4.X
 - `php artisan migrate:refresh`
 - `php artisan serve`
 
-# License
+## License
 
 MIT © Hackers@UPC
