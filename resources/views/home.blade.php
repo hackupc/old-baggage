@@ -151,6 +151,12 @@
         </tr>
       @endforeach
     </table>
+    <div>
+      <h3 class="special-title">Special baggages</h3>
+      @foreach($specials as $special)
+        <p><a href="{{ $special['row'] }}{{ $special['col'] }}">{{ $special['row'] }}{{ $special['col'] }}</a>: {{ $special['id'] }}</p>
+      @endforeach
+    </div>
   </div>
 </div>
 @endsection

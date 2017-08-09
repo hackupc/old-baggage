@@ -33,11 +33,13 @@ class HomeController extends Controller
       $baggages = HomeController::getBaggages($rows, $cols);
       $lists = Position::current();
       $lists = json_decode( json_encode($lists), true);
+      $specials = Position::current_specials();
+      $specials = json_decode( json_encode($specials), true);
 
       $tabs = array('', 'active', '', '');
       $tabs2 = array(false, true, false, false, false, false);
 
-      return view('home', ['baggages' => $baggages, 'lists' => $lists, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+      return view('home', ['baggages' => $baggages, 'specials' => $specials, 'lists' => $lists, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
     public function indexSpecific($id, $position){
@@ -53,11 +55,13 @@ class HomeController extends Controller
       $list = Position::specific($newposition[0], $newposition[1]);
       $list = json_decode( json_encode($list), true);
       $list = $list[0];
+      $specials = Position::current_specials();
+      $specials = json_decode( json_encode($specials), true);
 
       $tabs = array('', '', '', '');
       $tabs2 = array(false, false, false, false, true, false);
 
-      return view('home', ['baggages' => $baggages, 'newposition' => $newposition, 'list' => $list, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+      return view('home', ['baggages' => $baggages, 'specials' => $specials, 'newposition' => $newposition, 'list' => $list, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
     public function oldSpecific($id, $position){
@@ -73,11 +77,13 @@ class HomeController extends Controller
       $list = Position::specific($newposition[0], $newposition[1]);
       $list = json_decode( json_encode($list), true);
       $list = $list[0];
+      $specials = Position::current_specials();
+      $specials = json_decode( json_encode($specials), true);
 
       $tabs = array('', '', '', '');
       $tabs2 = array(false, false, false, false, true, false);
 
-      return view('home', ['baggages' => $baggages, 'newposition' => $newposition, 'list' => $list, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+      return view('home', ['baggages' => $baggages, 'specials' => $specials, 'newposition' => $newposition, 'list' => $list, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
     public function userSpecific($id){
@@ -93,11 +99,13 @@ class HomeController extends Controller
       $user = $user[0];
       $lists = Position::user_specific($id);
       $lists = json_decode( json_encode($lists), true);
+      $specials = Position::current_specials();
+      $specials = json_decode( json_encode($specials), true);
 
       $tabs = array('', '', '', '');
       $tabs2 = array(false, false, false, false, false, true);
 
-      return view('home', ['baggages' => $baggages, 'user' => $user, 'lists' => $lists, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+      return view('home', ['baggages' => $baggages, 'specials' => $specials, 'user' => $user, 'lists' => $lists, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
     public function create(){
@@ -108,11 +116,13 @@ class HomeController extends Controller
       $baggages = HomeController::getBaggages($rows, $cols);
       $lists = Position::current();
       $lists = json_decode( json_encode($lists), true);
+      $specials = Position::current_specials();
+      $specials = json_decode( json_encode($specials), true);
 
       $tabs = array('active', '', '', '');
       $tabs2 = array(true, false, false, false, false, false);
 
-      return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+      return view('home', ['baggages' => $baggages, 'specials' => $specials, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
     public function createSpecific($position){
@@ -121,13 +131,15 @@ class HomeController extends Controller
       $med_col = $cols/2;
 
       $baggages = HomeController::getBaggages($rows, $cols);
+      $specials = Position::current_specials();
+      $specials = json_decode( json_encode($specials), true);
 
       $newposition = array(substr($position, 0, 1), substr($position, 1));
 
       $tabs = array('active', '', '', '');
       $tabs2 = array(true, false, false, false, false, false);
 
-      return view('home', ['baggages' => $baggages, 'newposition' => $newposition, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+      return view('home', ['baggages' => $baggages, 'specials' => $specials, 'newposition' => $newposition, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
     public function history(){
@@ -138,11 +150,13 @@ class HomeController extends Controller
       $baggages = HomeController::getBaggages($rows, $cols);
       $lists = Position::old();
       $lists = json_decode( json_encode($lists), true);
+      $specials = Position::current_specials();
+      $specials = json_decode( json_encode($specials), true);
 
       $tabs = array('', '', 'active', '');
       $tabs2 = array(false, false, true, false, false, false);
 
-      return view('home', ['baggages' => $baggages, 'lists' => $lists, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+      return view('home', ['baggages' => $baggages, 'specials' => $specials, 'lists' => $lists, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
     public function search(){
@@ -151,11 +165,13 @@ class HomeController extends Controller
       $med_col = $cols/2;
 
       $baggages = HomeController::getBaggages($rows, $cols);
+      $specials = Position::current_specials();
+      $specials = json_decode( json_encode($specials), true);
 
       $tabs = array('', '', '', 'active');
       $tabs2 = array(false, false, false, true, false, false);
 
-      return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+      return view('home', ['baggages' => $baggages, 'specials' => $specials, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
     public function getBaggages($rows, $cols){
