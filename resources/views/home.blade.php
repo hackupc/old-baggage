@@ -109,23 +109,27 @@
         <div>
           <h2 class="user-title">User history</h2>
         </div>
-        <h3>{{ $user['id'] }}</h3>
-        <p>{{ $user['name'] }} {{ $user['surname'] }}</p>
-        @foreach($lists as $list)
-        <div class="list">
-          <div class="list-left">
-            <a href="/user/{{ $list['id'] }}/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
+        @if(empty($user[0]))
+          <p>There's no baggage with the ID/Passport provided.</p>
+        @else
+          <h3>{{ $user[0]['id'] }}</h3>
+          <p>{{ $user[0]['name'] }} {{ $user[0]['surname'] }}</p>
+          @foreach($lists as $list)
+          <div class="list">
+            <div class="list-left">
+              <a href="/user/{{ $list['id'] }}/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
+            </div>
+            <div class="list-right">
+              <p>{{ date("j/Y g:i\h", strtotime($list['created'])) }}
+                @if(!empty($list['deleted']))
+                  - {{ date("j/Y g:i\h", strtotime($list['deleted'])) }}
+                @endif
+              </p>
+            </div>
+            <p>{{ $list['description'] }}</p>
           </div>
-          <div class="list-right">
-            <p>{{ date("j/Y g:i\h", strtotime($list['created'])) }}
-              @if(!empty($list['deleted']))
-                - {{ date("j/Y g:i\h", strtotime($list['deleted'])) }}
-              @endif
-            </p>
-          </div>
-          <p>{{ $list['description'] }}</p>
-        </div>
-        @endforeach
+          @endforeach
+        @endif
       </div>
     @endif
   </div>

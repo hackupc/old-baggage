@@ -96,7 +96,6 @@ class HomeController extends Controller
       $baggages = HomeController::getBaggages($rows, $cols);
       $user = Position::user($id);
       $user = json_decode( json_encode($user), true);
-      $user = $user[0];
       $lists = Position::user_specific($id);
       $lists = json_decode( json_encode($lists), true);
       $specials = Position::current_specials();
