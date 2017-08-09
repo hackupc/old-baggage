@@ -22,10 +22,10 @@ Route::get('history', 'HomeController@history');
 Route::get('search', 'HomeController@search');
 Route::get('user/{id}', 'HomeController@userSpecific');
 Route::post('user/{id}', 'HomeController@userSpecific');
-Route::get('user/{id}/{position}', 'HomeController@indexSpecific');
 Route::get('remove/{id}', function(){
   return redirect('/');
 });
+Route::get('baggage/{created}/{position}', 'HomeController@indexSpecific');
 
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');

@@ -42,17 +42,19 @@ class HomeController extends Controller
       return view('home', ['baggages' => $baggages, 'specials' => $specials, 'lists' => $lists, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
-    public function indexSpecific($id, $position){
+    public function indexSpecific($created, $position){
       //$baggages = Position::current();
       //$baggages = json_decode( json_encode($baggages), true);
       $rows = 10;
       $cols = 14;
       $med_col = $cols/2;
 
+      $created = date('Y-m-d H:i:s', $created);
+
       $baggages = HomeController::getBaggages($rows, $cols);
 
       $newposition = array(substr($position, 0, 1), substr($position, 1));
-      $list = Position::ocupation($newposition[0], $newposition[1]);
+      $list = Position::baggage($created, $newposition[0], $newposition[1]);
       $list = json_decode( json_encode($list), true);
       $specials = Position::current_specials();
       $specials = json_decode( json_encode($specials), true);

@@ -41,4 +41,8 @@ class Position extends Model
     public static function register($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, $reg_desc){
       return \DB::insert('insert into positions (row, col, id, name, surname, created, deleted, description) values (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, NULL, ?)', [$reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, $reg_desc]);
     }
+
+    public static function baggage($created, $ini_row, $ini_col){
+      return \DB::table('positions')->select('*')->where([['row', $ini_row], ['col', $ini_col], ['created', $created]])->get();
+    }
 }
