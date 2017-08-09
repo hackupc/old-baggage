@@ -25,6 +25,9 @@ Route::get('search', 'HomeController@search');
 Route::get('user/{id}', 'HomeController@userSpecific');
 Route::post('user/{id}', 'HomeController@userSpecific');
 Route::get('user/{id}/{position}', 'HomeController@indexSpecific');
+Route::post('remove/{id}', function(){
+  return redirect('/');
+});
 
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');
