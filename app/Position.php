@@ -14,6 +14,10 @@ class Position extends Model
       return \DB::select('select pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description from positions pos where pos.row = "@" and pos.deleted is null order by pos.row, pos.col');
     }
 
+    public static function current_notspecials(){
+      return \DB::select('select pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description from positions pos where pos.row <> "@" and pos.deleted is null order by pos.row, pos.col');
+    }
+
     public static function old(){
       return \DB::select('select pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.deleted, pos.description from positions pos where pos.deleted is not null order by pos.row, pos.col');
     }
@@ -32,5 +36,9 @@ class Position extends Model
 
     public static function ocupation($ini_row, $ini_col){
       return \DB::table('positions')->select('*')->where([['row', $ini_row], ['col', $ini_col], ['deleted', NULL]])->get();
+    }
+
+    public static function register($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, $reg_desc){
+      return \DB::insert('insert into positions (row, col, id, name, surname, created, deleted, description) values (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, NULL, ?)', [$reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, $reg_desc]);
     }
 }

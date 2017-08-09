@@ -17,9 +17,7 @@ Route::get('/', function(){
 Route::get('list', 'HomeController@index');
 Route::get('create', 'HomeController@create');
 Route::get('create/{position}', 'HomeController@createSpecific');
-Route::post('create/{id}/{name}/{surname}/{desc}/{spe}', function(){
-  return redirect('/');
-});
+Route::post('create/{id}/{name}/{surname}/{desc}/{spe}', 'HomeController@registerSpecific');
 Route::get('history', 'HomeController@history');
 Route::get('search', 'HomeController@search');
 Route::get('user/{id}', 'HomeController@userSpecific');

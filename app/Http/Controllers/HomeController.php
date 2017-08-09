@@ -52,7 +52,7 @@ class HomeController extends Controller
       $baggages = HomeController::getBaggages($rows, $cols);
 
       $newposition = array(substr($position, 0, 1), substr($position, 1));
-      $list = Position::specific($newposition[0], $newposition[1]);
+      $list = Position::ocupation($newposition[0], $newposition[1]);
       $list = json_decode( json_encode($list), true);
       $specials = Position::current_specials();
       $specials = json_decode( json_encode($specials), true);
@@ -138,6 +138,79 @@ class HomeController extends Controller
       $tabs2 = array(true, false, false, false, false, false);
 
       return view('home', ['baggages' => $baggages, 'specials' => $specials, 'newposition' => $newposition, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+    }
+
+    public function registerSpecific($id, $name, $surname, $desc, $spe){
+      if($spe=="true"){
+        $places = Position::current_specials();
+        $places = json_decode( json_encode($places), true);
+
+        $founded=false;
+        $size=sizeof($places);
+        $pos=0;
+        $pos2=0;
+        $def_row = '@';
+        while((!$founded)&&($pos<$size)){
+          if($pos!=$places[$pos]["col"]){
+            $founded = true;
+            $def_col = $pos;
+          }
+          if($pos==$places[$pos2]["col"]){
+            $pos2++;
+          }
+          $pos++;
+        }
+        if(!$founded){
+          $def_col = $pos;
+        }
+      }
+      else{
+        $places = Position::current_notspecials();
+        $places = json_decode( json_encode($places), true);
+
+        $rows = 10;
+        $cols = 14;
+        $rows_i = 0;
+        $cols_i = 0;
+        $places_org = array();
+        while($rows_i<$rows){
+          while($cols_i<$cols){
+            $places_org[] = array("row"=>chr($rows_i+65), "col"=>$cols_i);
+            $cols_i++;
+          }
+          $cols_i = 0;
+          $rows_i++;
+        }
+        $founded=false;
+        $def_row=NULL;
+        $def_col=NULL;
+        $size=sizeof($places);
+        $size_org=sizeof($places_org);
+        $pos=0;
+        $pos_org=0;
+        while((!$founded)&&($pos_org<$size_org)){
+          if(($pos<$size)&&($places_org[$pos_org]["row"]==$places[$pos]["row"])&&($places_org[$pos_org]["col"]==$places[$pos]["col"])){
+            $pos++;
+          }
+          else{
+            $founded = true;
+            $def_row = $places_org[$pos_org]["row"];
+            $def_col = $places_org[$pos_org]["col"];
+          }
+          $pos_org++;
+        }
+      }
+
+      $reg_row = $def_row;
+      $reg_col = $def_col;
+      $reg_id = $id;
+      $reg_name = $name;
+      $reg_surname = $surname;
+      $reg_desc = $desc;
+
+      Position::register($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, $reg_desc);
+
+      return redirect("/user"."/".$reg_id."/".$reg_row.$reg_col);
     }
 
     public function history(){

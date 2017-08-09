@@ -92,18 +92,18 @@
         <div>
           <h2 class="user-title">Baggage details</h2>
         </div>
-        @if(empty($user[0]))
+        @if(empty($list[0]))
           <p>There's no baggage with the details provided.</p>
         @else
           <h3>{{ $list[0]['row'] }}{{ $list[0]['col'] }}</h3>
-          <p><a href="/user/{{ $list['id'] }}">{{ $list[0]['id'] }}</a>: {{ $list[0]['name'] }} {{ $list[0]['surname'] }}</p>
+          <p><a href="/user/{{ $list[0]['id'] }}">{{ $list[0]['id'] }}</a>: {{ $list[0]['name'] }} {{ $list[0]['surname'] }}</p>
           <p>{{ $list[0]['description'] }}</p>
           <p>{{ date("j/Y g:i\h", strtotime($list[0]['created'])) }}
             @if(!empty($list[0]['deleted']))
               - {{ date("j/Y g:i\h", strtotime($list[0]['deleted'])) }}</p>
             @else
               </p>
-              <a id="remove-button" href="/remove/{{ $list['row'] }}{{ $list['col'] }}">Remove baggage</a>
+              <a id="remove-button" href="/remove/{{ $list[0]['row'] }}{{ $list[0]['col'] }}">Remove baggage</a>
             @endif
         @endif
       </div>
