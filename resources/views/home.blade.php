@@ -42,7 +42,7 @@
         @foreach($lists as $list)
         <div class="list">
           <div class="list-left">
-            <a href="/list/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
+            <a href="/user/{{ $list['id'] }}/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
             <p>{{ date("j/Y g:i\h", strtotime($list['created'])) }}</p>
           </div>
           <div class="list-right">
@@ -61,7 +61,7 @@
         @foreach($lists as $list)
         <div class="list">
           <div class="list-left">
-            <a href="/list/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
+            <a href="/user/{{ $list['id'] }}/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
             <p>{{ date("j/y g:i\h", strtotime($list['created'])) }} - {{ date("j/y g:i\h", strtotime($list['deleted'])) }}</p>
           </div>
           <div class="list-right">
@@ -112,7 +112,7 @@
         @foreach($lists as $list)
         <div class="list">
           <div class="list-left">
-            <a href="/list/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
+            <a href="/user/{{ $list['id'] }}/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
           </div>
           <div class="list-right">
             <p>{{ date("j/Y g:i\h", strtotime($list['created'])) }}
@@ -138,7 +138,7 @@
             @endif
             @if($baggage[2])
               <td id="hupc-pos_{{ $baggage[0] }}{{ $baggage[1] }}" style="background-color: #E71754;">
-                <a class="occupied" href="/list/{{ $baggage[0] }}{{ $baggage[1] }}">{{ $baggage[0] }}{{ $baggage[1] }}</a>
+                <a class="occupied" href="/user/{{ $baggage[2][0]['id'] }}/{{ $baggage[0] }}{{ $baggage[1] }}">{{ $baggage[0] }}{{ $baggage[1] }}</a>
               </td>
             @else
               <td id="hupc-pos_{{ $baggage[0] }}{{ $baggage[1] }}">

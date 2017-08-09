@@ -40,7 +40,27 @@ class HomeController extends Controller
       return view('home', ['baggages' => $baggages, 'lists' => $lists, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
-    public function indexSpecific($position){
+    public function indexSpecific($id, $position){
+      //$baggages = Position::current();
+      //$baggages = json_decode( json_encode($baggages), true);
+      $rows = 10;
+      $cols = 14;
+      $med_col = $cols/2;
+
+      $baggages = HomeController::getBaggages($rows, $cols);
+
+      $newposition = array(substr($position, 0, 1), substr($position, 1));
+      $list = Position::specific($newposition[0], $newposition[1]);
+      $list = json_decode( json_encode($list), true);
+      $list = $list[0];
+
+      $tabs = array('', '', '', '');
+      $tabs2 = array(false, false, false, false, true, false);
+
+      return view('home', ['baggages' => $baggages, 'newposition' => $newposition, 'list' => $list, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+    }
+
+    public function oldSpecific($id, $position){
       //$baggages = Position::current();
       //$baggages = json_decode( json_encode($baggages), true);
       $rows = 10;
@@ -143,6 +163,7 @@ class HomeController extends Controller
       for($ini_row=0; $ini_row<$rows; $ini_row++){
         for($ini_col=0; $ini_col<$cols; $ini_col++){
           $founded = Position::ocupation(chr($ini_row+65), $ini_col);
+          $founded = json_decode( json_encode($founded), true);
           $baggages[$ini_row][$ini_col] = array(chr($ini_row+65), $ini_col, $founded);
         }
       }
