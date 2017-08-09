@@ -17,6 +17,7 @@ Route::get('/', function(){
 Route::get('list', 'HomeController@index');
 Route::get('create', 'HomeController@create');
 Route::get('create/{position}', 'HomeController@createSpecific');
+Route::get('history', 'HomeController@history');
 
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');

@@ -53,6 +53,25 @@
         @endforeach
       </div>
     @endif
+    @if($tabs2[2]==true)
+      <div id="user-list" class="user-content">
+        <div>
+          <h2 class="user-title">Baggage history</h2>
+        </div>
+        @foreach($lists as $list)
+        <div class="list">
+          <div class="list-left">
+            <a href="/list/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
+            <p>{{ date("j/y g:i\h", strtotime($list['created'])) }} - {{ date("j/y g:i\h", strtotime($list['deleted'])) }}</p>
+          </div>
+          <div class="list-right">
+            <a href="/user/{{ $list['id'] }}">{{ $list['id'] }}</a>
+            <p>{{ $list['name'] }} {{ $list['surname'] }}</p>
+          </div>
+        </div>
+        @endforeach
+      </div>
+    @endif
   </div>
   <div id="pos-wrap">
     <table>
