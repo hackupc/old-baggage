@@ -4,10 +4,33 @@
 <div id="main-wrap">
   <div id="user-wrap">
     <div class="user-tab">
-      <button class="user-tabs<?php if(!((isset($_GET['rem_row'])&&isset($_GET['rem_col']))||isset($_GET['rem_id']))){ echo ' active'; } ?>" onclick="openTab(event, 'user-checkin')">Check-in</button>
-      <button class="user-tabs" onclick="openTab(event, 'user-list')">List</button>
-      <button class="user-tabs" onclick="openTab(event, 'user-history')">History</button>
-      <button class="tabs-last user-tabs" onclick="openTab(event, 'user-search')">Search</button>
+      <button class="user-tabs {{ $tabs[0] }}" onclick="openTab(event, 'user-checkin')">Check-in</button>
+      <button class="user-tabs {{ $tabs[1] }}" onclick="openTab(event, 'user-list')">List</button>
+      <button class="user-tabs {{ $tabs[2] }}" onclick="openTab(event, 'user-history')">History</button>
+      <button class="tabs-last user-tabs {{ $tabs[3] }}" onclick="openTab(event, 'user-search')">Search</button>
+    </div>
+    <div id="user-checkin" class="user-content {{ $tabs2[0] }}">
+      <form method="post" id="reg_form" action="" onsubmit="return verifyForm();">
+        <div>
+          <h2 class="user-title">Baggage check-in</h2>
+          @if(!empty($newposition))
+            <p class="user-title">Position selected: {{ $newposition[0] }}{{ $newposition[1] }} (<a href="./">Remove</a>)</p>
+          @endif
+        </div>
+        <div>
+          <input type="text" id="reg_id" name="reg_id" placeholder="ID/Passport">
+          <input type="text" id="reg_name" name="reg_name" placeholder="Name">
+          <input type="text" id="reg_surname" name="reg_surname" placeholder="Surname">
+          <input type="text" id="reg_desc" name="reg_desc" placeholder="Description">
+          @if(!empty($newposition))
+              <input type="hidden" id="reg_row" name="reg_row" value="{{ $newposition[0] }}">
+              <input type="hidden" id="reg_col" name="reg_col" value="{{ $newposition[1] }}">
+          @else
+              <input type="checkbox" id="reg_spe" name="reg_spe" value="Special">Special<br>
+          @endif
+          <input type="submit" id="reg_submit" name="reg_submit" value="Submit">
+        </div>
+      </form>
     </div>
   </div>
   <div id="pos-wrap">

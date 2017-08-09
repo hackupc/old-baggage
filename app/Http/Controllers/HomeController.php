@@ -39,6 +39,9 @@ class HomeController extends Controller
         }
       }
 
-      return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col]);
+      $tabs = array('active', '', '', '');
+      $tabs2 = array('active2', '', '', '');
+
+      return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 }

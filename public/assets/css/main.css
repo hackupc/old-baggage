@@ -113,6 +113,10 @@ p{
   margin-top: 2px !important;
   border-bottom: 3px solid #E91753;
 }
+.active2{
+  opacity: 1 !important;
+  height: inherit !important;
+}
 .tabs-last{
   margin-right: 0 !important;
 }
