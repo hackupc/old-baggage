@@ -102,6 +102,30 @@
           @endif
       </div>
     @endif
+    @if($tabs2[5]==true)
+      <div id="user-details" class="user-content" style="opacity: 1; height: inherit;">
+        <div>
+          <h2 class="user-title">User history</h2>
+        </div>
+        <h3>{{ $user['id'] }}</h3>
+        <p>{{ $user['name'] }} {{ $user['surname'] }}</p>
+        @foreach($lists as $list)
+        <div class="list">
+          <div class="list-left">
+            <a href="/list/{{ $list['row'] }}{{ $list['col'] }}">{{ $list['row'] }}{{ $list['col'] }}</a>
+          </div>
+          <div class="list-right">
+            <p>{{ date("j/Y g:i\h", strtotime($list['created'])) }}
+              @if(!empty($list['deleted']))
+                - {{ date("j/Y g:i\h", strtotime($list['deleted'])) }}
+              @endif
+            </p>
+          </div>
+          <p>{{ $list['description'] }}</p>
+        </div>
+        @endforeach
+      </div>
+    @endif
   </div>
   <div id="pos-wrap">
     <table>
@@ -114,7 +138,7 @@
             @endif
             @if($baggage[2])
               <td id="hupc-pos_{{ $baggage[0] }}{{ $baggage[1] }}" style="background-color: #E71754;">
-                <a class="occupied" href="/current/{{ $baggage[0] }}{{ $baggage[1] }}">{{ $baggage[0] }}{{ $baggage[1] }}</a>
+                <a class="occupied" href="/list/{{ $baggage[0] }}{{ $baggage[1] }}">{{ $baggage[0] }}{{ $baggage[1] }}</a>
               </td>
             @else
               <td id="hupc-pos_{{ $baggage[0] }}{{ $baggage[1] }}">

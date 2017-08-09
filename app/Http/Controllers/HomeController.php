@@ -60,6 +60,26 @@ class HomeController extends Controller
       return view('home', ['baggages' => $baggages, 'newposition' => $newposition, 'list' => $list, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
+    public function userSpecific($id){
+      //$baggages = Position::current();
+      //$baggages = json_decode( json_encode($baggages), true);
+      $rows = 10;
+      $cols = 14;
+      $med_col = $cols/2;
+
+      $baggages = HomeController::getBaggages($rows, $cols);
+      $user = Position::user($id);
+      $user = json_decode( json_encode($user), true);
+      $user = $user[0];
+      $lists = Position::user_specific($id);
+      $lists = json_decode( json_encode($lists), true);
+
+      $tabs = array('', '', '', '');
+      $tabs2 = array(false, false, false, false, false, true);
+
+      return view('home', ['baggages' => $baggages, 'user' => $user, 'lists' => $lists, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+    }
+
     public function create(){
       $rows = 10;
       $cols = 14;
