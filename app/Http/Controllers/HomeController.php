@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Position;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,21 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-      $baggages = \DB::select('select pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.description from positions pos where pos.deleted is null order by pos.row, pos.col');
-      return view('home', ['baggages' => $baggages]);
+      //$baggages = Position::current();
+      //$baggages = json_decode( json_encode($baggages), true);
+      $rows = 10;
+      $cols = 14;
+      $med_col = $cols/2;
+
+      $baggages = array();
+
+      for($ini_row=0; $ini_row<$rows; $ini_row++){
+        for($ini_col=0; $ini_col<$cols; $ini_col++){
+          $founded = Position::ocupation(chr($ini_row+65), $ini_col);
+          $baggages[$ini_row][$ini_col] = array(chr($ini_row+65), $ini_col, $founded);
+        }
+      }
+
+      return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col]);
     }
 }

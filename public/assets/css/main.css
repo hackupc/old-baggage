@@ -87,7 +87,7 @@ p{
 .user-tabs{
   width: 23.125%;
   margin: 0 2.5% 0 0 !important;
-  padding: 2.5%;
+  padding: 3% 2.5% 2% 2.5%;
   float: left;
   color: #FFF;
   font-weight: 500;
@@ -99,6 +99,9 @@ p{
   cursor: pointer;
   cursor: hand;
   border-bottom: 5px solid #750B29;
+  font-family: GothamBoldRegular;
+  font-size: 12px;
+  line-height: 12px;
 }
 .user-tabs:hover{
   background-color: #F43D7A;
@@ -214,10 +217,12 @@ form input[type=submit]:hover{
   table-layout: fixed;
   border-spacing: 5px;
   margin: -5px -5px 3.8075% -5px;
+  font-size: 14px;
+  line-height: 14px;
 }
 #pos-wrap tr, th, td{
   border-collapse: collapse;
-  padding: 1.25% 0;
+  padding: 1.5% 0;
 }
 #pos-wrap td{
   background-color: #DBDBDB;
@@ -234,7 +239,7 @@ form input[type=submit]:hover{
 }
 .free{
   color: #494949;
-  font-weight: 200;
+  font-weight: 400;
   text-decoration: none;
 }
 .special-title{

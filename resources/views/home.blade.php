@@ -11,36 +11,23 @@
     </div>
   </div>
   <div id="pos-wrap">
-    <?php
-      $rows = 10;
-      $cols = 14;
-      $med_col = $cols/2;
-    ?>
     <table>
-      @for($ini_row=0; $ini_row<$rows; $ini_row++)
+      @foreach($baggages as $baggage_row)
         <tr>
-          <?php $corridor = false; ?>
-          @for($ini_col=0; $ini_col<$cols; $ini_col++)
-            @if((!$corridor)AND($ini_col==$med_col))
-              <td class="pos-med" id="hupc-pos_{{ chr($ini_row+65) }}-corridor">
+          @foreach($baggage_row as $baggage)
+            @if($baggage[2])
+              <td id="hupc-pos_{{ $baggage[0] }}{{ $baggage[1] }}" style="background-color: #E71754;">
+                <a class="occupied" href="/current/{{ $baggage[0] }}{{ $baggage[1] }}">{{ $baggage[0] }}{{ $baggage[1] }}</a>
               </td>
-              <?php
-                $ini_col--;
-                $corridor = true;
-              ?>
             @else
-              <td id="hupc-pos_{{ chr($ini_row+65) }}-{{ $ini_col }}">
-                <a class="occupied">{{ chr($ini_row+65) }}{{ $ini_col }}</a>
+              <td id="hupc-pos_{{ $baggage[0] }}{{ $baggage[1] }}">
+                <a class="free" href="/create/{{ $baggage[0] }}{{ $baggage[1] }}">{{ $baggage[0] }}{{ $baggage[1] }}</a>
               </td>
             @endif
-          @endfor
+          @endforeach
         </tr>
-      @endfor
+      @endforeach
     </table>
-
-    @foreach($baggages as $baggage)
-      <p>Test: {{ $baggage->row }}{{ $baggage->col }}</p>
-    @endforeach
   </div>
 </div>
 @endsection
