@@ -15,6 +15,7 @@ Route::get('/', function(){
   return redirect('list');
 });
 Route::get('list', 'HomeController@index');
+Route::get('list/{position}', 'HomeController@indexSpecific');
 Route::get('create', 'HomeController@create');
 Route::get('create/{position}', 'HomeController@createSpecific');
 Route::get('history', 'HomeController@history');

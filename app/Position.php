@@ -18,6 +18,10 @@ class Position extends Model
       return \DB::select('select pos.row, pos.col, pos.id, pos.name, pos.surname, pos.created, pos.deleted, pos.description from positions pos where pos.deleted is not null order by pos.row, pos.col');
     }
 
+    public static function specific($ini_row, $ini_col){
+      return \DB::table('positions')->select('*')->where([['row', $ini_row], ['col', $ini_col]])->get();
+    }
+
     public static function ocupation($ini_row, $ini_col){
       return \DB::table('positions')->select('*')->where([['row', $ini_row], ['col', $ini_col], ['deleted', NULL]])->get();
     }

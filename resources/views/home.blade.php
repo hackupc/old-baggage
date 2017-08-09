@@ -85,6 +85,23 @@
         </form>
       </div>
     @endif
+    @if($tabs2[4]==true)
+      <div id="user-user" class="user-content" style="opacity: 1; height: inherit;">
+        <div>
+          <h2 class="user-title">Baggage details</h2>
+        </div>
+        <h3>{{ $list['row'] }}{{ $list['col'] }}</h3>
+        <p><a href="/user/{{ $list['id'] }}">{{ $list['id'] }}</a>: {{ $list['name'] }} {{ $list['surname'] }}</p>
+        <p>{{ $list['description'] }}</p>
+        <p>{{ date("j/Y g:i\h", strtotime($list['created'])) }}
+          @if(!empty($list['deleted']))
+            - {{ date("j/Y g:i\h", strtotime($list['deleted'])) }}</p>
+          @else
+            </p>
+            <a id="remove-button" href="/remove/{{ $list['row'] }}{{ $list['col'] }}">Remove baggage</a>
+          @endif
+      </div>
+    @endif
   </div>
   <div id="pos-wrap">
     <table>
