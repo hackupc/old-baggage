@@ -30,18 +30,48 @@ class HomeController extends Controller
       $cols = 14;
       $med_col = $cols/2;
 
-      $baggages = array();
+      $baggages = HomeController::getBaggages($rows, $cols);
 
+      $tabs = array('', 'active', '', '');
+      $tabs2 = array('', 'active2', '', '');
+
+      return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+    }
+
+    public function create(){
+      $rows = 10;
+      $cols = 14;
+      $med_col = $cols/2;
+
+      $baggages = HomeController::getBaggages($rows, $cols);
+
+      $tabs = array('active', '', '', '');
+      $tabs2 = array('active2', '', '', '');
+
+      return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+    }
+
+    public function createSpecific($position){
+      $rows = 10;
+      $cols = 14;
+      $med_col = $cols/2;
+
+      $baggages = HomeController::getBaggages($rows, $cols);
+
+      $tabs = array('active', '', '', '');
+      $tabs2 = array('active2', '', '', '');
+
+      return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+    }
+
+    public function getBaggages($rows, $cols){
+      $baggages = array();
       for($ini_row=0; $ini_row<$rows; $ini_row++){
         for($ini_col=0; $ini_col<$cols; $ini_col++){
           $founded = Position::ocupation(chr($ini_row+65), $ini_col);
           $baggages[$ini_row][$ini_col] = array(chr($ini_row+65), $ini_col, $founded);
         }
       }
-
-      $tabs = array('active', '', '', '');
-      $tabs2 = array('active2', '', '', '');
-
-      return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+      return $baggages;
     }
 }

@@ -4,10 +4,10 @@
 <div id="main-wrap">
   <div id="user-wrap">
     <div class="user-tab">
-      <button class="user-tabs {{ $tabs[0] }}" onclick="openTab(event, 'user-checkin')">Check-in</button>
-      <button class="user-tabs {{ $tabs[1] }}" onclick="openTab(event, 'user-list')">List</button>
-      <button class="user-tabs {{ $tabs[2] }}" onclick="openTab(event, 'user-history')">History</button>
-      <button class="tabs-last user-tabs {{ $tabs[3] }}" onclick="openTab(event, 'user-search')">Search</button>
+      <a class="user-tabs {{ $tabs[0] }}" href="/create">Check-in</a>
+      <a class="user-tabs {{ $tabs[1] }}" href="/">List</a>
+      <a class="user-tabs {{ $tabs[2] }}" href="/history">History</a>
+      <a class="tabs-last user-tabs {{ $tabs[3] }}" href="/search">Search</a>
     </div>
     <div id="user-checkin" class="user-content {{ $tabs2[0] }}">
       <form method="post" id="reg_form" action="" onsubmit="return verifyForm();">

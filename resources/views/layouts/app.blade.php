@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>HackUPC | Baggage</title>
+    <title>HackUPC | Baggage check-in</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -22,7 +22,6 @@
 
     <!-- Scripts -->
     <script src="{{ URL::asset('assets/js/form.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/js/tabs.js') }}" type="text/javascript"></script>
 
     <style>
         body {
@@ -37,7 +36,10 @@
 <body id="app-layout">
   @if(!Auth::guest())
     <div id="header">
-      <a href="" class="logo"><img src="assets/img/logo.png" class="logo"/></a>
+      <div id="header-logos">
+        <a href="/" class="logo"><img src="{{ URL::asset('assets/img/baggage2.png') }}" class="logo"/></a>
+        <a href="https://hackupc.com" class="logoby"><img src="{{ URL::asset('assets/img/byhackupc2.png') }}" class="logoby"/></a>
+      </div>
       <a href="{{ url('/logout') }}" class="title"><h4 class="title">Logout</h4></a>
     </div>
     @endif

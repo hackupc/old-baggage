@@ -70,9 +70,18 @@ p{
   align-items: center;
   justify-content: space-between;
 }
+#header-logos{
+  display: inline-flex;
+  align-items: center;
+}
 .logo{
   height: 25px;
   float: left;
+}
+.logoby{
+  height: 15px;
+  float: left;
+  margin-left: 5px;
 }
 .title{
   float: right;
@@ -85,7 +94,7 @@ p{
 
 /*== TABS ==*/
 .user-tabs{
-  width: 23.125%;
+  width: 18%;
   margin: 0 2.5% 0 0 !important;
   padding: 3% 2.5% 2% 2.5%;
   float: left;
