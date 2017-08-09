@@ -12,7 +12,7 @@ class CreatePositionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hupc_positions', function (Blueprint $table) {
+        Schema::create('positions', function (Blueprint $table) {
           $table->char('row', 1);
           $table->smallInteger('col');
           $table->string('id', 25);
@@ -33,6 +33,6 @@ class CreatePositionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('hupc_positions');
+        Schema::drop('positions');
     }
 }
