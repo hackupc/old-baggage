@@ -29,8 +29,10 @@ You can now enter http://localhost:8000 with username `volunteer` and password `
 
 ## To-do
 
-- Add functionality to the check-in baggage form
-- Add functionality to the remove baggage button
+- Add functionality to the check-in baggage form.
+- Add functionality to the remove baggage button.
+- Add not founded user page.
+- Add not founded baggage page.
 
 ## License
 
