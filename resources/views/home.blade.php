@@ -162,7 +162,7 @@
     <div>
       <h3 class="special-title">Special baggages</h3>
       @foreach($specials as $special)
-        <p><a href="{{ $special['row'] }}{{ $special['col'] }}">{{ $special['row'] }}{{ $special['col'] }}</a>: {{ $special['id'] }}</p>
+        <p><a href="/baggage/{{ strtotime($special['created']) }}/{{ $special['row'] }}{{ $special['col'] }}">{{ $special['row'] }}{{ $special['col'] }}</a>: {{ $special['id'] }}</p>
       @endforeach
     </div>
   </div>
