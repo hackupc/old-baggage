@@ -31,11 +31,13 @@ class HomeController extends Controller
       $med_col = $cols/2;
 
       $baggages = HomeController::getBaggages($rows, $cols);
+      $lists = Position::current();
+      $lists = json_decode( json_encode($lists), true);
 
       $tabs = array('', 'active', '', '');
-      $tabs2 = array('', 'active2', '', '');
+      $tabs2 = array(false, true, false, false);
 
-      return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+      return view('home', ['baggages' => $baggages, 'lists' => $lists, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
     public function create(){
@@ -44,9 +46,10 @@ class HomeController extends Controller
       $med_col = $cols/2;
 
       $baggages = HomeController::getBaggages($rows, $cols);
+      $lists = Position::current();
 
       $tabs = array('active', '', '', '');
-      $tabs2 = array('active2', '', '', '');
+      $tabs2 = array(true, false, false, false);
 
       return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
@@ -59,7 +62,7 @@ class HomeController extends Controller
       $baggages = HomeController::getBaggages($rows, $cols);
 
       $tabs = array('active', '', '', '');
-      $tabs2 = array('active2', '', '', '');
+      $tabs2 = array(true, false, false, false);
 
       return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }

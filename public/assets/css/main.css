@@ -122,10 +122,6 @@ p{
   margin-top: 2px !important;
   border-bottom: 3px solid #E91753;
 }
-.active2{
-  opacity: 1 !important;
-  height: inherit !important;
-}
 .tabs-last{
   margin-right: 0 !important;
 }
@@ -141,10 +137,7 @@ p{
   float: left;
 }
 .user-content{
-  opacity: 0;
-  height: 0;
   transition: all 0.5s ease-in-out;
-  overflow: hidden;
 }
 .user-title{
   margin-bottom: 10px !important;
