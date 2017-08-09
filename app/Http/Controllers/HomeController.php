@@ -83,6 +83,19 @@ class HomeController extends Controller
       return view('home', ['baggages' => $baggages, 'lists' => $lists, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
+    public function search(){
+      $rows = 10;
+      $cols = 14;
+      $med_col = $cols/2;
+
+      $baggages = HomeController::getBaggages($rows, $cols);
+
+      $tabs = array('', '', '', 'active');
+      $tabs2 = array(false, false, false, true);
+
+      return view('home', ['baggages' => $baggages, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+    }
+
     public function getBaggages($rows, $cols){
       $baggages = array();
       for($ini_row=0; $ini_row<$rows; $ini_row++){

@@ -72,6 +72,19 @@
         @endforeach
       </div>
     @endif
+    @if($tabs2[3]==true)
+      <div id="user-search" class="user-content">
+        <form method="post" id="sea_form" action="" onsubmit="return verifySearch();">
+          <div>
+            <h2 class="user-title">User search</h2>
+          </div>
+          <div>
+            <input type="text" id="sea_id" name="sea_id" placeholder="DNI/Passport">
+            <input type="submit" id="sea_submit" name="sea_submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    @endif
   </div>
   <div id="pos-wrap">
     <table>
