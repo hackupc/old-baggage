@@ -18,6 +18,7 @@ Route::get('list', 'HomeController@index');
 Route::get('create', 'HomeController@create');
 Route::get('create/{position}', 'HomeController@createSpecific');
 Route::post('create/{id}/{name}/{surname}/{desc}/{spe}', 'HomeController@registerSpecific');
+Route::post('create/{id}/{name}/{surname}/{desc}/{row}/{col}', 'HomeController@registerSpecificPosition');
 Route::get('history', 'HomeController@history');
 Route::get('search', 'HomeController@search');
 Route::get('user/{id}', 'HomeController@userSpecific');

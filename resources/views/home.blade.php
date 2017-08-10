@@ -25,9 +25,11 @@
             <input type="text" id="reg_surname" name="reg_surname" placeholder="Surname">
             <input type="text" id="reg_desc" name="reg_desc" placeholder="Description">
             @if(!empty($newposition))
+                <input type="hidden" id="determined" name="determined" value="true">
                 <input type="hidden" id="reg_row" name="reg_row" value="{{ $newposition[0] }}">
                 <input type="hidden" id="reg_col" name="reg_col" value="{{ $newposition[1] }}">
             @else
+                <input type="hidden" id="determined" name="determined" value="false">
                 <input type="checkbox" id="reg_spe" name="reg_spe" value="Special">Special<br>
             @endif
             <input type="submit" id="reg_submit" name="reg_submit" value="Submit">

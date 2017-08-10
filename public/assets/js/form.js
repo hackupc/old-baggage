@@ -19,7 +19,12 @@ function verifyForm(){
       e3.placeholder = "The surname is mandatory";
     }
     if(flag==true){
-      document.getElementById('reg_form').action = "/create/"+e1.value+"/"+e2.value+"/"+e3.value+"/"+document.getElementById('reg_desc').value+"/"+document.getElementById('reg_spe').checked;
+      if(document.getElementById('determined').value=="true"){
+        document.getElementById('reg_form').action = "/create/"+e1.value+"/"+e2.value+"/"+e3.value+"/"+document.getElementById('reg_desc').value+"/"+document.getElementById('reg_row').value+"/"+document.getElementById('reg_col').value;
+      }
+      else{
+        document.getElementById('reg_form').action = "/create/"+e1.value+"/"+e2.value+"/"+e3.value+"/"+document.getElementById('reg_desc').value+"/"+document.getElementById('reg_spe').checked;
+      }
     }
     return flag;
 }
