@@ -136,10 +136,17 @@ class HomeController extends Controller
 
       $newposition = array(substr($position, 0, 1), substr($position, 1));
 
-      $tabs = array('active', '', '', '');
-      $tabs2 = array(true, false, false, false, false, false);
+      $current = Position::ocupation($newposition[0], $newposition[1]);
+      $current = json_decode( json_encode($current), true);
+      if($current==NULL){
+        $tabs = array('active', '', '', '');
+        $tabs2 = array(true, false, false, false, false, false);
 
-      return view('home', ['baggages' => $baggages, 'specials' => $specials, 'newposition' => $newposition, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+        return view('home', ['baggages' => $baggages, 'specials' => $specials, 'newposition' => $newposition, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+      }
+      else{
+        return redirect("/create");
+      }
     }
 
     public function registerSpecific($id, $name, $surname, $desc, $spe){
@@ -226,11 +233,18 @@ class HomeController extends Controller
       $reg_surname = $surname;
       $reg_desc = $desc;
 
-      Position::register($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, $reg_desc);
       $current = Position::ocupation($reg_row, $reg_col);
       $current = json_decode( json_encode($current), true);
+      if($current==NULL){
+        Position::register($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, $reg_desc);
+        $current = Position::ocupation($reg_row, $reg_col);
+        $current = json_decode( json_encode($current), true);
 
-      return redirect("/baggage"."/".strtotime($current[0]['created'])."/".$reg_row.$reg_col);
+        return redirect("/baggage"."/".strtotime($current[0]['created'])."/".$reg_row.$reg_col);
+      }
+      else{
+        return redirect("/create");
+      }
     }
 
     public function deleteSpecific($id){
