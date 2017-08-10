@@ -19,7 +19,7 @@ class Position extends Model
     }
 
     public static function old(){
-      return \DB::table('positions')->select('*')->where('deleted', '<>', NULL)->orderBy('row', 'asc')->orderBy('col', 'asc')->get();
+      return \DB::table('positions')->select('*')->where('deleted', '<>', NULL)->orderBy('created', 'desc')->orderBy('row', 'asc')->orderBy('col', 'asc')->get();
     }
 
     public static function user($id){
