@@ -65,6 +65,31 @@ class HomeController extends Controller
       return view('home', ['baggages' => $baggages, 'specials' => $specials, 'newposition' => $newposition, 'list' => $list, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
     }
 
+    public function indexSpecificNew($created, $position){
+      //$baggages = Position::current();
+      //$baggages = json_decode( json_encode($baggages), true);
+      $rows = 10;
+      $cols = 14;
+      $med_col = $cols/2;
+
+      $created = date('Y-m-d H:i:s', $created);
+
+      $baggages = HomeController::getBaggages($rows, $cols);
+
+      $newposition = array(substr($position, 0, 1), substr($position, 1));
+      $list = Position::baggage($created, $newposition[0], $newposition[1]);
+      $list = json_decode( json_encode($list), true);
+      $specials = Position::current_specials();
+      $specials = json_decode( json_encode($specials), true);
+
+      $tabs = array('', '', '', '');
+      $tabs2 = array(false, false, false, false, true, false);
+
+      $new = true;
+
+      return view('home', ['baggages' => $baggages, 'new' => $new, 'specials' => $specials, 'newposition' => $newposition, 'list' => $list, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+    }
+
     public function oldSpecific($id, $position){
       //$baggages = Position::current();
       //$baggages = json_decode( json_encode($baggages), true);
@@ -149,6 +174,25 @@ class HomeController extends Controller
       }
     }
 
+    public function createMore($id, $name, $surname){
+      $rows = 10;
+      $cols = 14;
+      $med_col = $cols/2;
+
+      $baggages = HomeController::getBaggages($rows, $cols);
+      $lists = Position::current();
+      $lists = json_decode( json_encode($lists), true);
+      $specials = Position::current_specials();
+      $specials = json_decode( json_encode($specials), true);
+
+      $tabs = array('active', '', '', '');
+      $tabs2 = array(true, false, false, false, false, false);
+
+      $moredetails = array($id, $name, $surname);
+
+      return view('home', ['baggages' => $baggages, 'moredetails' => $moredetails, 'specials' => $specials, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+    }
+
     public function registerSpecific($id, $name, $surname, $desc, $spe){
       if($spe=="true"){
         $places = Position::current_specials();
@@ -221,7 +265,7 @@ class HomeController extends Controller
       $current = Position::ocupation($reg_row, $reg_col);
       $current = json_decode( json_encode($current), true);
 
-      return redirect("/baggage"."/".strtotime($current[0]['created'])."/".$reg_row.$reg_col);
+      return redirect("/baggage/new/".strtotime($current[0]['created'])."/".$reg_row.$reg_col);
     }
 
     public function registerSpecificPosition($id, $name, $surname, $desc, $row, $col){
@@ -240,7 +284,7 @@ class HomeController extends Controller
         $current = Position::ocupation($reg_row, $reg_col);
         $current = json_decode( json_encode($current), true);
 
-        return redirect("/baggage"."/".strtotime($current[0]['created'])."/".$reg_row.$reg_col);
+        return redirect("/baggage/new/".strtotime($current[0]['created'])."/".$reg_row.$reg_col);
       }
       else{
         return redirect("/create");

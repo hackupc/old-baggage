@@ -20,9 +20,15 @@
           </div>
           <div>
             {{ csrf_field() }}
-            <input type="text" id="reg_id" name="reg_id" placeholder="ID/Passport">
-            <input type="text" id="reg_name" name="reg_name" placeholder="Name">
-            <input type="text" id="reg_surname" name="reg_surname" placeholder="Surname">
+            @if(empty($moredetails))
+              <input type="text" id="reg_id" name="reg_id" placeholder="ID/Passport">
+              <input type="text" id="reg_name" name="reg_name" placeholder="Name">
+              <input type="text" id="reg_surname" name="reg_surname" placeholder="Surname">
+            @else
+              <input type="text" id="reg_id" name="reg_id" placeholder="ID/Passport" value="{{ $moredetails[0] }}">
+              <input type="text" id="reg_name" name="reg_name" placeholder="Name" value="{{ $moredetails[1] }}">
+              <input type="text" id="reg_surname" name="reg_surname" placeholder="Surname" value="{{ $moredetails[2] }}">
+            @endif
             <input type="text" id="reg_desc" name="reg_desc" placeholder="Description">
             @if(!empty($newposition))
                 <input type="hidden" id="determined" name="determined" value="true">
@@ -105,7 +111,12 @@
               - {{ date("j/Y H:i\h", strtotime($list[0]['deleted'])) }}</p>
             @else
               </p>
-              <a id="remove-button" href="/remove/{{ $list[0]['row'] }}{{ $list[0]['col'] }}">Remove baggage</a>
+              @if(!empty($new))
+                <a id="remove-button" href="/create/more/{{ $list[0]['id'] }}/{{ $list[0]['name'] }}/{{ $list[0]['surname'] }}" style="width: 42.5%; float: left; margin-right: 5%;">Add more</a>
+                <a id="remove-button" href="/remove/{{ $list[0]['row'] }}{{ $list[0]['col'] }}" style="width: 42.5%; float: right;">Remove baggage</a>
+              @else
+                <a id="remove-button" href="/remove/{{ $list[0]['row'] }}{{ $list[0]['col'] }}">Remove baggage</a>
+              @endif
             @endif
         @endif
       </div>

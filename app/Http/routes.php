@@ -17,6 +17,7 @@ Route::get('/', function(){
 Route::get('list', 'HomeController@index');
 Route::get('create', 'HomeController@create');
 Route::get('create/{position}', 'HomeController@createSpecific');
+Route::get('create/more/{id}/{name}/{surname}', 'HomeController@createMore');
 Route::post('create/{id}/{name}/{surname}/{desc}/{spe}', 'HomeController@registerSpecific');
 Route::post('create/{id}/{name}/{surname}/{desc}/{row}/{col}', 'HomeController@registerSpecificPosition');
 Route::get('history', 'HomeController@history');
@@ -25,6 +26,7 @@ Route::get('user/{id}', 'HomeController@userSpecific');
 Route::post('user/{id}', 'HomeController@userSpecific');
 Route::get('remove/{id}', 'HomeController@deleteSpecific');
 Route::get('baggage/{created}/{position}', 'HomeController@indexSpecific');
+Route::get('baggage/new/{created}/{position}', 'HomeController@indexSpecificNew');
 
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');
