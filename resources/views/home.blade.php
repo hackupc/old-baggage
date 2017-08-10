@@ -150,6 +150,10 @@
               <td id="hupc-pos_{{ $baggage[0] }}{{ $baggage[1] }}" style="background-color: #E71754;">
                 <a class="occupied" href="/baggage/{{ strtotime($baggage[2][0]['created']) }}/{{ $baggage[0] }}{{ $baggage[1] }}">{{ $baggage[0] }}{{ $baggage[1] }}</a>
               </td>
+            @elseif(!empty($newposition)AND($newposition[0]==$baggage[0])AND($newposition[1]==$baggage[1]))
+              <td id="hupc-pos_{{ $baggage[0] }}{{ $baggage[1] }}" style="background-color: #FF78A5;">
+                <a class="occupied" href="/create/{{ $baggage[0] }}{{ $baggage[1] }}">{{ $baggage[0] }}{{ $baggage[1] }}</a>
+              </td>
             @else
               <td id="hupc-pos_{{ $baggage[0] }}{{ $baggage[1] }}">
                 <a class="free" href="/create/{{ $baggage[0] }}{{ $baggage[1] }}">{{ $baggage[0] }}{{ $baggage[1] }}</a>
