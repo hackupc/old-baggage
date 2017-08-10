@@ -47,6 +47,6 @@ class Position extends Model
     }
 
     public static function deleteSpecific($id0, $id1){
-      return \DB::update('update positions set deleted = CURRENT_TIMESTAMP where row = ? and col = ?', [$id0, $id1]);
+      return \DB::update('update positions set deleted = CURRENT_TIMESTAMP where row = ? and col = ? and deleted is null', [$id0, $id1]);
     }
 }
