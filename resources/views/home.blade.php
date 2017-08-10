@@ -131,6 +131,7 @@
         @else
           <h3>{{ $user[0]['id'] }}</h3>
           <p>{{ $user[0]['name'] }} {{ $user[0]['surname'] }}</p>
+          <a id="remove-button" href="/create/more/{{ $user[0]['id'] }}/{{ $user[0]['name'] }}/{{ $user[0]['surname'] }}" style="margin-bottom: 25px;">Add more baggages</a>
           @foreach($lists as $list)
           <div class="list">
             <div class="list-left">
