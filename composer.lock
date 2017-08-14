@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b1485987e7c5949da82435d403e52e8",
+    "content-hash": "82d6dc3aab6a58c90ee4e8921b3f4349",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -517,6 +517,48 @@
                 "storage"
             ],
             "time": "2017-08-06T17:41:04+00:00"
+        },
+        {
+            "name": "libern/qr-code-reader",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/libern/qr-code-reader.git",
+                "reference": "f5443ef16ca145ceaf21df7d28efee3771989ee5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/libern/qr-code-reader/zipball/f5443ef16ca145ceaf21df7d28efee3771989ee5",
+                "reference": "f5443ef16ca145ceaf21df7d28efee3771989ee5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Libern\\QRCodeReader\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Libern Lin",
+                    "email": "libernlin@gmail.com"
+                }
+            ],
+            "description": "Simple PHP QR Code Reader / Decoder",
+            "homepage": "https://github.com/libern/qr-code-reader",
+            "keywords": [
+                "laravel",
+                "qr code decoder",
+                "qr code reader"
+            ],
+            "time": "2017-06-02T12:56:55+00:00"
         },
         {
             "name": "monolog/monolog",
