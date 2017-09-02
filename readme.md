@@ -4,7 +4,8 @@
 </p>
 <br>
 
-HackUPC's baggage management system
+HackUPC's baggage management system.
+<br>
 
 ![Baggage check-in demo](https://raw.githubusercontent.com/hackupc/baggage/master/demo.png)
 
