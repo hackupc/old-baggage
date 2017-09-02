@@ -7,6 +7,8 @@
 
 HackUPC's baggage management system.
 
+![Baggage check-in demo](https://raw.githubusercontent.com/hackupc/baggage/demo.png)
+
 ## Setup
 
 Needs: PHP 5.6, GD library
