@@ -4,7 +4,7 @@
 </p>
 <br>
 
-![HackUPC's baggage management system](https://raw.githubusercontent.com/hackupc/baggage/master/logo.png =250x)
+![Baggage check-in logo](https://raw.githubusercontent.com/hackupc/baggage/master/logo.png =250x)
 
 ![Baggage check-in demo](https://raw.githubusercontent.com/hackupc/baggage/master/demo.png)
 
