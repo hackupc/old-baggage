@@ -6,8 +6,6 @@
 
 ![Baggage check-in demo](https://raw.githubusercontent.com/hackupc/baggage/master/demo.png)
 
-<img src="https://raw.githubusercontent.com/hackupc/baggage/master/logo.png" width="50%" style="margin-left: auto; margin-right: auto; display: block; text-align: center;">
-
 ## Setup
 
 Needs: PHP 5.6, GD library
