@@ -7,7 +7,8 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "libern/qr-code-reader": "^1.0"
+        "mike42/escpos-php": "^1.5",
+        "ext-mbstring": "^0.0.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
