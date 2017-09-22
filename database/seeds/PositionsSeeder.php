@@ -10,7 +10,7 @@ class PositionsSeeder extends Seeder
      * @return void
      */
     public function run(){
-      DB::table('positions')->insert([
+      /*DB::table('positions')->insert([
         'row' => 'A',
         'col' => 1,
         'id' => '74294850Y',
@@ -59,6 +59,6 @@ class PositionsSeeder extends Seeder
         'created' => '2017-08-09 08:23:01',
         'deleted' => NULL,
         'description' => 'Oscilloscope.'
-      ]);
+      ]);*/
     }
 }

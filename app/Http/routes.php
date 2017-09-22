@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function(){
-  return redirect('list');
+  return redirect('create');
 });
 Route::get('list', 'HomeController@index');
 Route::get('create', 'HomeController@create');
