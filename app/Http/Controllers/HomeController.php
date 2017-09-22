@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Position;
+use App\ThermalPrinter;
 
 class HomeController extends Controller
 {
@@ -265,6 +266,7 @@ class HomeController extends Controller
       $current = Position::ocupation($reg_row, $reg_col);
       $current = json_decode( json_encode($current), true);
 
+      $valor = ThermalPrinter::printTicket($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, strtotime($current[0]['created']));
       return redirect("/baggage/new/".strtotime($current[0]['created'])."/".$reg_row.$reg_col);
     }
 
@@ -284,6 +286,7 @@ class HomeController extends Controller
         $current = Position::ocupation($reg_row, $reg_col);
         $current = json_decode( json_encode($current), true);
 
+        $valor = ThermalPrinter::printTicket($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, strtotime($current[0]['created']));
         return redirect("/baggage/new/".strtotime($current[0]['created'])."/".$reg_row.$reg_col);
       }
       else{

@@ -1,0 +1,5 @@
+
+Fatal error: Uncaught Error: Class 'FilePrintConnector' not found in C:\Users\Oriol Closa\github\baggage\hello-world.php:6
+Stack trace:
+#0 {main}
+  thrown in C:\Users\Oriol Closa\github\baggage\hello-world.php on line 6
