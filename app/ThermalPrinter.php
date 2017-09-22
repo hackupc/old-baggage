@@ -9,7 +9,7 @@ use Mike42\Escpos\EscposImage;
 
 class ThermalPrinter extends Model
 {
-    public static function printTicket($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, $reg_time){
+    public static function printTicket($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, $reg_time, $reg_time2, $reprint){
       $connector = new WindowsPrintConnector("POS-58");
       $printer = new Printer($connector);
       $printer -> setJustification(Printer::JUSTIFY_CENTER);
@@ -29,14 +29,28 @@ class ThermalPrinter extends Model
       $printer -> feed(2);
       $printer -> selectPrintMode(Printer::MODE_FONT_A);
       $printer -> text("Time: ".date("d/m/Y H:i:s", $reg_time));
-      $printer -> feed(2);
-      if($reg_row=="@"){
-        $logo = EscposImage::load(public_path()."/assets/ticket/warning.png");
-        $printer -> bitImage($logo);
+      if($reg_time2!=0){
+        $printer -> feed(1);
+        $printer -> text("Returned: ".date("d/m/Y H:i:s", $reg_time2));
         $printer -> feed(2);
+        $logo = EscposImage::load(public_path()."/assets/ticket/nonvalid.png");
+        $printer -> bitImage($logo);
       }
-      $logo = EscposImage::load(public_path()."/assets/ticket/footer.png");
-      $printer -> bitImage($logo);
+      else{
+        $printer -> feed(2);
+        if($reprint==1){
+          $logo = EscposImage::load(public_path()."/assets/ticket/reprint.png");
+          $printer -> bitImage($logo);
+          $printer -> feed(2);
+        }
+        if($reg_row=="@"){
+          $logo = EscposImage::load(public_path()."/assets/ticket/warning.png");
+          $printer -> bitImage($logo);
+          $printer -> feed(2);
+        }
+        $logo = EscposImage::load(public_path()."/assets/ticket/footer.png");
+        $printer -> bitImage($logo);
+      }
       $printer -> feed(5);
       $printer -> cut();
       $printer -> close();

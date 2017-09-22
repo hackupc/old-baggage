@@ -27,6 +27,7 @@ Route::post('user/{id}', 'HomeController@userSpecific');
 Route::get('remove/{id}', 'HomeController@deleteSpecific');
 Route::get('baggage/{created}/{position}', 'HomeController@indexSpecific');
 Route::get('baggage/new/{created}/{position}', 'HomeController@indexSpecificNew');
+Route::get('print/{row}/{col}/{id}/{name}/{surname}/{created}/{removed}/{reprint}', 'HomeController@print');
 
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');

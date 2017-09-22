@@ -266,7 +266,7 @@ class HomeController extends Controller
       $current = Position::ocupation($reg_row, $reg_col);
       $current = json_decode( json_encode($current), true);
 
-      $valor = ThermalPrinter::printTicket($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, strtotime($current[0]['created']));
+      $valor = ThermalPrinter::printTicket($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, strtotime($current[0]['created']), 0, 0);
       return redirect("/baggage/new/".strtotime($current[0]['created'])."/".$reg_row.$reg_col);
     }
 
@@ -286,7 +286,7 @@ class HomeController extends Controller
         $current = Position::ocupation($reg_row, $reg_col);
         $current = json_decode( json_encode($current), true);
 
-        $valor = ThermalPrinter::printTicket($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, strtotime($current[0]['created']));
+        $valor = ThermalPrinter::printTicket($reg_row, $reg_col, $reg_id, $reg_name, $reg_surname, strtotime($current[0]['created']), 0, 0);
         return redirect("/baggage/new/".strtotime($current[0]['created'])."/".$reg_row.$reg_col);
       }
       else{
@@ -332,6 +332,11 @@ class HomeController extends Controller
       $tabs2 = array(false, false, false, true, false, false);
 
       return view('home', ['baggages' => $baggages, 'specials' => $specials, 'rows' => $rows, 'cols' => $cols, 'med_col' => $med_col, 'tabs' => $tabs, 'tabs2' => $tabs2]);
+    }
+
+    public function print($row, $col, $id, $name, $surname, $created, $removed, $reprint){
+      ThermalPrinter::printTicket($row, $col, $id, $name, $surname, $created, $removed, $reprint);
+      return redirect("/baggage"."/".$created."/".$row.$col);
     }
 
     public function getBaggages($rows, $cols){
