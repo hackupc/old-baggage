@@ -30,6 +30,11 @@ class ThermalPrinter extends Model
       $printer -> selectPrintMode(Printer::MODE_FONT_A);
       $printer -> text("Time: ".date("d/m/Y H:i:s", $reg_time));
       $printer -> feed(2);
+      if($reg_row=="@"){
+        $logo = EscposImage::load(public_path()."/assets/ticket/warning.png");
+        $printer -> bitImage($logo);
+        $printer -> feed(2);
+      }
       $logo = EscposImage::load(public_path()."/assets/ticket/footer.png");
       $printer -> bitImage($logo);
       $printer -> feed(5);
