@@ -35,6 +35,7 @@ class ThermalPrinter extends Model
         $printer -> feed(2);
         $logo = EscposImage::load(public_path()."/assets/ticket/nonvalid.png");
         $printer -> bitImage($logo);
+        $printer -> feed(2);
       }
       else{
         $printer -> feed(2);
@@ -48,9 +49,9 @@ class ThermalPrinter extends Model
           $printer -> bitImage($logo);
           $printer -> feed(2);
         }
-        $logo = EscposImage::load(public_path()."/assets/ticket/footer.png");
-        $printer -> bitImage($logo);
       }
+      $logo = EscposImage::load(public_path()."/assets/ticket/footer.png");
+      $printer -> bitImage($logo);
       $printer -> feed(5);
       $printer -> cut();
       $printer -> close();
