@@ -162,13 +162,18 @@ p{
   text-align: right;
   overflow: auto;
 }
-#remove-button{
+#remove-button, #remove-button-2{
   margin-top: 25px;
   font-weight: 100;
 }
 #remove-button:hover{
   background-color: #F43D7A;
   margin-top: 27px !important;
+  border-bottom: 3px solid #E91753;
+}
+#remove-button-2:hover{
+  background-color: #F43D7A;
+  margin-top: 20px !important;
   border-bottom: 3px solid #E91753;
 }
 
@@ -184,7 +189,7 @@ form input[type=checkbox]{
   margin: 0 5px 15px 0;
   padding: 2.5%;
 }
-form input[type=submit], #remove-button{
+form input[type=submit], #remove-button, #remove-button-2{
   min-width: 25%;
   margin-left: auto;
   margin-right: auto;

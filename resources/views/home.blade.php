@@ -114,8 +114,8 @@
               </p>
               @if(!empty($new))
                 <a id="remove-button" href="/print/{{ $list[0]['row'] }}/{{ $list[0]['col'] }}/{{ $list[0]['id'] }}/{{ $list[0]['name'] }}/{{ $list[0]['surname'] }}/{{ strtotime($list[0]['created']) }}/0/1">Reprint ticket</a>
-                <a id="remove-button" href="/create/more/{{ $list[0]['id'] }}/{{ $list[0]['name'] }}/{{ $list[0]['surname'] }}" style="width: 42.5%; float: left; margin-top: 5%; margin-right: 5%;">Add more</a>
-                <a id="remove-button" href="/remove/{{ $list[0]['row'] }}{{ $list[0]['col'] }}" style="width: 42.5%; float: right; margin-top: 5%;">Remove baggage</a>
+                <a id="remove-button-2" href="/create/more/{{ $list[0]['id'] }}/{{ $list[0]['name'] }}/{{ $list[0]['surname'] }}" style="width: 42.5%; float: left; margin-top: 5%; margin-right: 5%;">Add more</a>
+                <a id="remove-button-2" href="/remove/{{ $list[0]['row'] }}{{ $list[0]['col'] }}" style="width: 42.5%; float: right; margin-top: 5%;">Remove baggage</a>
               @else
                 <a id="remove-button" href="/print/{{ $list[0]['row'] }}/{{ $list[0]['col'] }}/{{ $list[0]['id'] }}/{{ $list[0]['name'] }}/{{ $list[0]['surname'] }}/{{ strtotime($list[0]['created']) }}/0/1" style="width: 42.5%; float: left; margin-right: 5%;">Reprint ticket</a>
                 <a id="remove-button" href="/remove/{{ $list[0]['row'] }}{{ $list[0]['col'] }}" style="width: 42.5%; float: right;">Remove baggage</a>
