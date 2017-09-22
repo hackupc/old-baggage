@@ -11,7 +11,7 @@ HackUPC's baggage management system.
 
 ## Setup
 
-Needs: PHP 5.6, GD library
+Needs: PHP 5.6
 
 - `git clone https://github.com/hackupc/baggage && cd baggage`
 - `Create one database and setup .env for database connection`
