@@ -19,7 +19,7 @@ class ThermalPrinter extends Model
       $logo = EscposImage::load(public_path()."/assets/ticket/logo3.png");
       $printer -> bitImage($logo);
       $printer -> selectPrintMode(Printer::MODE_FONT_B);
-      $printer -> text("Printed on: ".date("d/m/Y H:i:s", time()));
+      $printer -> text("Printed on: ".date("d/m/Y H:i:s", time()+7200));
       $printer -> selectPrintMode(Printer::MODE_FONT_A);
       $printer -> feed(2);
       $printer -> selectPrintMode(Printer::MODE_DOUBLE_HEIGHT|Printer::MODE_DOUBLE_WIDTH);
