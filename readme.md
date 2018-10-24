@@ -1,6 +1,6 @@
 <br>
 <p align="center">
-  <img alt="HackUPC Fall 2017" src="https://github.com/hackupc/frontend/raw/master/src/images/hackupc-header.png" width="620"/>
+  <img alt="HackUPC 2018" src="https://github.com/hackupc/frontend/raw/master/src/images/hackupc-ogimage%402x.png" width="620"/>
 </p>
 <br>
 
@@ -27,7 +27,7 @@ You can now enter http://localhost:8000 with username `volunteer` and password `
 - **DB_PORT**: Usually 3306, can be any port.
 - **DB_DATABASE**:  The name of the database to connect with.
 - **DB_USERNAME**: The username to connect to the database.
-- **DB_PASSWOR**: The password to connect to the database.
+- **DB_PASSWORD**: The password to connect to the database.
 
 ## License
 
